@@ -1,0 +1,7 @@
+LIBGDX-DEMO
+LibGDX nie jest
+silnikiem gier.
+Jest zbiorem narzedzi.
+Pozwala tworzyc gry na:
+Windows, Linux,
+iOS, Andoirda i HTML
