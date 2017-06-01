@@ -2,6 +2,7 @@ package pl.xxlo;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,8 +32,8 @@ public class WarBoat extends ApplicationAdapter {
         batch.draw(img, 0, 0);
 	    if(demo){
             subDemo.render(batch);
-	        if(subDemo.isEnd()){
-	            demo = false;
+            if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE) || Gdx.input.isTouched() || subDemo.isEnd()) {
+                demo = false;
 	            subDemo.dispose();
                 img = new Texture(Gdx.files.internal("data/sea.png"));
             }
@@ -42,7 +43,7 @@ public class WarBoat extends ApplicationAdapter {
         }
 		batch.end();
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();
