@@ -2,9 +2,10 @@ package pl.xxlo;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 
 public class Ship {
-    final float maxDir = 115f;
+    final float maxDir = 120f;
     final float startDirLauncher = -90f;
     final float startDirGun = 90f;
     final float maxPower = 20f;
@@ -21,9 +22,10 @@ public class Ship {
     private Sprite gun;
     private Sprite launcher;
     private BitmapFont font;
-    private float gunX, gunY, launcherX, launcherY, hullX, hullY;
     private Sprite redDot;
     private boolean mainGun = true;
+    private float centerX = Gdx.graphics.getWidth()/2f - 100f;
+    private float centerY = Gdx.graphics.getHeight()/2f;
 
     public Ship() {
         hull = new Sprite(new Texture(Gdx.files.internal("data/shiphull.png")));
@@ -33,17 +35,11 @@ public class Ship {
         font.setColor(Color.RED);
         font.getData().setScale(1f);
 
-        float centerX = Gdx.graphics.getWidth()/2f - 100f;
-        float centerY = Gdx.graphics.getHeight()/2f;
-        float hullHeight = hull.getHeight();
-        hullX = centerX - hull.getWidth() / 2f;
-        hullY = centerY - hullHeight / 2f;
         hull.setCenter(centerX, centerY);
-        gunX = centerX - gun.getWidth() / 2f - 19f;
-        gunY = centerY - gun.getHeight() / 2f;
-        launcherX = centerX - launcher.getWidth() / 2f +20f;
-        launcherY = centerY - launcher.getHeight() / 2f;
-        //hull.setPosition(hullX, hullY);
+        float gunX = centerX - gun.getWidth() / 2f - 19f;
+        float gunY = centerY - gun.getHeight() / 2f;
+        float launcherX = centerX - launcher.getWidth() / 2f +20f;
+        float launcherY = centerY - launcher.getHeight() / 2f;
         gun.setPosition(gunX, gunY);
         launcher.setPosition(launcherX, launcherY);
 
@@ -88,20 +84,26 @@ public class Ship {
                         launcher.getY() + launcher.getHeight() / 2f );
             } else {
                 System.out.println("someware other point touched!");
-                //check if shoot
+                float angle = countAngleOfWeapon(x, y);
+                if(mainGun) {
+                    if (Math.abs(angle - gunDir) < 1f) {
+                        //fire weapon
+                    } else {
+                        //rotate weapon
+                    }
+                } else {
+                    if(Math.abs(angle - launcherDir) < 1f){
+
+                    } else {
+
+                    }
+                }
             }
         }
-        if(Gdx.input.isKeyPressed(37) && this.gunDir > (this.startDirGun - this.maxDir))
-            this.gunDir -= 3f;
-        if(Gdx.input.isKeyPressed(38) && this.gunDir < (this.startDirGun + this.maxDir))
-            this.gunDir += 3f;
-        if(Gdx.input.isKeyPressed(39)
-            && this.launcherDir > (this.startDirLauncher - this.maxDir))
-                this.launcherDir -= 3f;
-        if(Gdx.input.isKeyPressed(40)
-                && this.launcherDir < (this.startDirLauncher + this.maxDir))
-                 this.launcherDir += 3f;
-
+        if(Gdx.input.isKeyPressed(37)) rotateGun(true);
+        if(Gdx.input.isKeyPressed(38)) rotateGun(false);
+        if(Gdx.input.isKeyPressed(39)) rotateLuncher(true);
+        if(Gdx.input.isKeyPressed(40)) rotateLuncher(false);
     }
 
     private boolean isTouched(Sprite s, int x, int y){
@@ -110,6 +112,38 @@ public class Ship {
                 x, y, s.getX(), s.getY(), s.getWidth(), s.getHeight()));
         return (x > s.getX()  && x < (s.getX() + s.getWidth())
             && y > s.getY() && y < (s.getY() + s.getHeight()));
+    }
+
+    private float countAngleOfWeapon(int x, int y){
+        float X = centerX;
+        float Y = centerY;
+        if(this.mainGun)  X -= 19f;
+        else X += 20f;
+        float dx = Math.abs(X - (float) x);
+        float dy = Math.abs(Y - (float) y);
+        float alpha = MathUtils.atan2(dy, dx);
+        return alpha * MathUtils.radiansToDegrees;
+    }
+
+    private void rotateGun(boolean left){
+        if(left) {
+            if(this.gunDir > (this.startDirGun - this.maxDir))
+                this.gunDir -= 3f;
+        } else {
+            if(this.gunDir < (this.startDirGun + this.maxDir))
+                this.gunDir += 3f;
+        }
+    }
+
+    private  void rotateLuncher(boolean left){
+        if(left) {
+            if(this.launcherDir > (this.startDirLauncher - this.maxDir))
+                this.launcherDir -= 3f;
+        } else {
+            if(this.launcherDir < (this.startDirLauncher + this.maxDir))
+                this.launcherDir += 3f;
+        }
+
     }
 
 }
