@@ -38,41 +38,45 @@ public class SubtitlesDemo {
         generator.dispose();
         layout = new GlyphLayout();
         positions = new int[subtitles.length];
-        for(int i = 0; i < positions.length; i++) {
+        for (int i = 0; i < positions.length; i++) {
             positions[i] = -110 * i;
         }
     }
 
     public void render(SpriteBatch batch) {
         batch.draw(texture, 0, 0);
-        for(int i = 0; i < subtitles.length; i++) {
+        for (int i = 0; i < subtitles.length; i++) {
             int pos = positions[i];
-            if(pos >=  0 && pos <= 960) {
+            if (pos >= 0 && pos <= 960) {
                 float posF = (float) pos;
-                float Y =  posF / 1.414213562f;
+                float Y = posF / 1.414213562f;
                 float mL = posF;
                 float mR = marginR(Y);
                 font.getData().setScale(
                         ((float) Gdx.graphics.getWidth() - mL - mR) /
-                                (float)(Gdx.graphics.getWidth() - 180)
+                                (float) (Gdx.graphics.getWidth() - 180)
                 );
-                layout.setText(font,  subtitles[i]);
+                layout.setText(font, subtitles[i]);
                 font.draw(batch, subtitles[i],
-                        (Gdx.graphics.getWidth() + mL - (layout.width + mR )) / 2, Y);
+                        (Gdx.graphics.getWidth() + mL - (layout.width + mR)) / 2, Y);
             }
             positions[i] += 1;
         }
-        if(positions[positions.length -1] > 900) endFlag = true;
+        if (positions[positions.length - 1] > 900) endFlag = true;
     }
 
-    private float marginR(float y) { return (180.0f - 0.257142857f*y); }
+    private float marginR(float y) {
+        return (180.0f - 0.257142857f * y);
+    }
 
     public void dispose() {
         texture.dispose();
         font.dispose();
     }
 
-    public boolean isEnd() { return endFlag;}
+    public boolean isEnd() {
+        return endFlag;
+    }
 
 }
 
