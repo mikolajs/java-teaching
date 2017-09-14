@@ -59,7 +59,7 @@ public class Ship {
         hull.draw(batch);
         gun.setRotation(angleToScreen(this.gunDir, this.startDirGun));
         gun.draw(batch);
-        launcher.setRotation(angleToScreen(launcherDir, startDirLauncher);
+        launcher.setRotation(angleToScreen(launcherDir, startDirLauncher));
         launcher.draw(batch);
         redDot.draw(batch);
         takeInput(0L);
@@ -151,7 +151,7 @@ public class Ship {
             if(this.launcherDir < this.maxDir  )
                 this.launcherDir += 3f;
         } else {
-            if(this.launcherDir >  this.maxDir)) {
+            if(this.launcherDir >  this.maxDir) {
                 this.launcherDir -= 3f;
             }
         }
