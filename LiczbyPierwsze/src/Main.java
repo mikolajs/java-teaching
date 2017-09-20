@@ -17,6 +17,13 @@ public class Main {
 		System.out.println("Time " + deltaTime );
 		System.out.println("liczb pierwszych: " + s.ilePierwszych());
 		s.wypisz(1000, 1100);
+		deltaTime = System.currentTimeMillis();
+		System.out.println("Super sito Eratostenesa");
+		SuperSieve ss = new SuperSieve();
+		deltaTime = System.currentTimeMillis() - deltaTime;
+		System.out.println("Time " + deltaTime );
+		System.out.println("liczb pierwszych: " + ss.count());
+		ss.print(1000, 1100);
 		
 	}
 	

@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class SuperSieve {
-	final int SIZE = 100;
+	final int SIZE = 10000;
 	//if false is prime
 	boolean[] sieve;
 	ArrayList<Integer> primes;
 	int start = 0;
 	
 	public SuperSieve() {
-		sieve = new boolean[10_000_000];
+		sieve = new boolean[SIZE];
 		primes = new ArrayList<Integer>();
 		mkSieve();
 	}
@@ -20,7 +20,7 @@ public class SuperSieve {
 			start += sieve.length;
 		}	
 	}
-	
+	//poprawić
 	private void mkLoop() {
 		int d, w;
 		//scratch counted primes
@@ -33,25 +33,29 @@ public class SuperSieve {
 				d += p;
 			}
 		}
-		countPrimes();
+		notePrimes();
 	}
-	//dokończyć!!!!
+
 	private void firstSieve() {
 		int p = 0;
-		int w = 0;
 		for(int i = 2; i < sieve.length; i++) {
+			p += i;
 			if(!sieve[i])
 				while(true) {
-					if(w >= sieve.length) break;
+					p += i;
+					if(p >= sieve.length) break;
+					sieve[p] = true;
 				}
 			
 		}
+		notePrimes();
 	}
 	
 	
-	private void countPrimes() {
-		for(int i = 0; i < sieve.length; i++) {
-			if( start == 0) i = 2;
+	private void notePrimes() {
+		int i = 0;
+		if( start == 0) i = 2;
+		for(; i < sieve.length; i++) {	
 			if (!sieve[i]) primes.add(i + start);
 			else sieve[i] = false;
 		}
@@ -62,6 +66,10 @@ public class SuperSieve {
 	}
 	
 	public void print(int start, int end) {
-		
+		for(int prime : primes) {
+			if(prime >= end) break;
+			if(prime >= start) System.out.print(prime + "\t");
+		}
+		System.out.println();
 	}
 }
