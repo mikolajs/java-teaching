@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class SuperSieve {
-	final int SIZE = 10000;
+	final int SIZE = 1_000_000;
 	//if false is prime
 	boolean[] sieve;
 	ArrayList<Integer> primes;
@@ -16,20 +16,20 @@ public class SuperSieve {
 	private void mkSieve() {
 		firstSieve();
 		for(int i = 1; i < 100; i++) {
-			mkLoop();
 			start += sieve.length;
+			mkLoop();
+			
 		}	
 	}
 	//poprawić
 	private void mkLoop() {
-		int d, w;
+		int d;
 		//scratch counted primes
 		for(int p : primes) {
-			w = start / p;
-			d = p * w;
+			d = (start / p ) * p;
 			if(d < start) d += p;
-			while(d < start + sieve.length) {
-				sieve[d] = true;
+			while(d - start < sieve.length) {
+				sieve[d - start] = true;
 				d += p;
 			}
 		}
@@ -39,7 +39,7 @@ public class SuperSieve {
 	private void firstSieve() {
 		int p = 0;
 		for(int i = 2; i < sieve.length; i++) {
-			p += i;
+			p = i;
 			if(!sieve[i])
 				while(true) {
 					p += i;
