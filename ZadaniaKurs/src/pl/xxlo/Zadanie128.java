@@ -46,11 +46,11 @@ public class Zadanie128 {
 	}
 	
 	private void drawTab(int s) {
-		for(int i = 0; i < (10 - s) ; i++) System.out.print("  ");
+		for(int i = 0; i < 10 - s ; i++) System.out.print("   ");
 		for(int i = 0; i <= s; i++) {
-			if(tab[i] % 100 > 0) System.out.print(tab[i] + " ");
-			else if(tab[i] % 10 > 0) System.out.print(" " + tab[i] + " ");
-			else System.out.print(" " + tab[i] + "   ");
+			if(tab[i] / 100 > 0) System.out.print("  " + tab[i] + " ");
+			else if(tab[i] / 10 > 0) System.out.print("  " + tab[i] + "  ");
+			else System.out.print("   " + tab[i] + "  ");
 		}
 		System.out.println();
 	}
