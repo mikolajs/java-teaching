@@ -1,19 +1,6 @@
 package pl.xxlo;
 
-/*
- * 
 
-Flagi bitowe służą do ustawiania w jednej zmiennej wielu opcji. 
-Do ich odczytania należy użyć operatorów bitowych. 
-Definiujemy flagi służące do zapisu w jednym bajcie opcji wyświetlania czcionki. 
-I tak:
-1 bit – podkreślenie, 2 bit - nadkreślenie, 3 bit – przekreślenie,  
-4 bit - pogrubienie, 5 bit - pochylenie, 6 bit indeks górny, 7 bit - indeks dolny, 
-8 bit -  kapitalik,
-A) utwórz zmienną (byte) zawierającą  flagi: nadkreślenie, pogrubienie, kapitalik
-B) odczytaj jakie formatowanie zakodowano w liczbie 83
-
- */
 
 public class Zadanie131 {
 	
@@ -24,11 +11,11 @@ public class Zadanie131 {
 		POGRUB(0b00010000),
 		POCHYL(0b00001000),
 		INDEKS_G(0b00000100),
-		INDEKS_D(0b10000010),
-		KAPITALIK(0b10000001);
-		byte color;
+		INDEKS_D(0b00000010),
+		KAPITALIK(0b00000001);
+		int color;
 		private FONT(int c) {
-			color = (byte) c;
+			color =  c;
 		}
 	}
 
@@ -51,21 +38,29 @@ public class Zadanie131 {
 	private byte code(FONT... props) {
 		int c = 0;
 		for(FONT f : props) {
-			c |= f.ordinal();
+			c |= (int) f.color;
 		}
 		return (byte) c;
 	}
 	
 	private void decode(byte c) {
+		
 		int code = (int )c;
+		System.out.println("Liczba: " + c + ": ");
 		for(FONT f: FONT.values()) {
-			if((code & f.ordinal()) != 0) 
+			if((code & f.color) != 0) 
 				System.out.println(f.toString());
 		}
+		System.out.println("KONIEC");
 	}
 	
 	public void test() {
-		
+		System.out.println(">>>TEST START");
+		System.out.println(Integer.toString(102, 2));
+		assert code(FONT.NADKRESL, FONT.PRZEKRESL, FONT.INDEKS_G, FONT.INDEKS_D) == (byte) 102;
+		decode((byte) 102);
+		decode((byte) -1);
+		System.out.println(">>>TEST END");
 	}
 
 }
