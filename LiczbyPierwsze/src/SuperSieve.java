@@ -1,27 +1,25 @@
 import java.util.ArrayList;
 
-public class SuperSieve {
-	final int SIZE = 1_000_000;
+public class SuperSieve implements Primes {
 	//if false is prime
 	boolean[] sieve;
 	ArrayList<Integer> primes;
 	int start = 0;
 	
-	public SuperSieve() {
-		sieve = new boolean[SIZE];
+	public SuperSieve(int size) {
+		sieve = new boolean[size/10];
 		primes = new ArrayList<Integer>();
 		mkSieve();
 	}
 	
 	private void mkSieve() {
 		firstSieve();
-		for(int i = 1; i < 100; i++) {
+		for(int i = 1; i < 10; i++) {
 			start += sieve.length;
 			mkLoop();
-			
 		}	
 	}
-	//poprawić
+	
 	private void mkLoop() {
 		int d;
 		//scratch counted primes
@@ -51,7 +49,6 @@ public class SuperSieve {
 		notePrimes();
 	}
 	
-	
 	private void notePrimes() {
 		int i = 0;
 		if( start == 0) i = 2;
@@ -61,7 +58,7 @@ public class SuperSieve {
 		}
 	}
 	
-	public int count() {
+	public int howManyPrimes() {
 		return primes.size();
 	}
 	
@@ -71,5 +68,9 @@ public class SuperSieve {
 			if(prime >= start) System.out.print(prime + "\t");
 		}
 		System.out.println();
+	}
+	
+	public String toString() {
+	    return "Super sito Erostatenesa";
 	}
 }
