@@ -22,20 +22,19 @@ class Pesel {
     }
     
     public String born() {
-        return "";
-    }
-    
-    public Date bornDate() {
+        System.out.println(pesel);
         int year = (int) (pesel / 1000_000_000L);
         int month = (int) (pesel / 10_000_000L) % 100;
         if(month > 12) {
             month -= 20;
-            year += year;
+            year += 2000;
         } else year += 1900;
         int day = (int) (pesel / 100_000L) % 100;
-        return new GregorianCalendar(year, month, day).getTime();
+        return String.format("%2d-%2d-%4d", day, month, year);
     }
     
+    //zwracający numer PESEL, informację o dacie urodzenia i
+    //płci w jednej linii, lub informacje o niepoprawności peselu.
     public String toString() {
         return "";
     }
@@ -63,12 +62,17 @@ public class Zadanie149 {
     public static void main(String[] args) {
         long p1 = 75121968629L;
         long p2 = 75121968624L;
+        long p3 = 1252004567L;
         Pesel pesel1 = new Pesel(p1);
         Pesel pesel2 = new Pesel(p2);
+        Pesel pesel3 = new Pesel(p3);
         assert pesel1.isCorrect() == true;
         assert pesel2.isCorrect() == false;
         assert pesel1.isMale() == false;
-        assert new Date(1975, 12, 19).getTime() == pesel1.bornDate().getTime();
+        System.out.println(pesel1.born());
+        System.out.println(pesel3.born());
+        assert pesel1.born().equals("19-12-1975");
+        //assert pesel3.born() == "20-05-2001";
     }
     
 
