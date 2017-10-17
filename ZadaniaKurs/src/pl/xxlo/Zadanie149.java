@@ -1,6 +1,7 @@
 package pl.xxlo;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 class Pesel {
     long pesel;
@@ -25,7 +26,14 @@ class Pesel {
     }
     
     public Date bornDate() {
-        return new Date();
+        int year = (int) (pesel / 1000_000_000L);
+        int month = (int) (pesel / 10_000_000L) % 100;
+        if(month > 12) {
+            month -= 20;
+            year += year;
+        } else year += 1900;
+        int day = (int) (pesel / 100_000L) % 100;
+        return new GregorianCalendar(year, month, day).getTime();
     }
     
     public String toString() {
@@ -60,6 +68,7 @@ public class Zadanie149 {
         assert pesel1.isCorrect() == true;
         assert pesel2.isCorrect() == false;
         assert pesel1.isMale() == false;
+        assert new Date(1975, 12, 19).getTime() == pesel1.bornDate().getTime();
     }
     
 
