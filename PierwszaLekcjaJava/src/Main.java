@@ -1,35 +1,23 @@
-class Circle {
-    double r;
 
-    public Circle(double R) {
-        r = R;
+class Dane {
+    private int a;
+    public static int b = 3;
+    static void print() {
+        System.out.println(b);
     }
-    
-    public double area() {
-        return Math.PI * r * r;
-    }
-    
-    public double circuit() {
-        return 2.0 * Math.PI * r;
-    }
-
+    public void setA(int a) {this.a = a; }
+    public int getA() { return a;}
 }
 
 public class Main {
-
-     public static void main(String[] args) {
-        final double cena32 = 14.90;
-        final double cena65 = 34.90;
-        Circle c32 = new Circle(32);
-        Circle c65 = new Circle(65);
-        if(cena32/c32.area() < cena65/c65.area()) {
-            System.out.format("Najbardziej opłacalna jest pizza mała\n");
-        } 
-        else {
-            System.out.format("Najbardziej opłacalna jest pizza duża\n");
-        }
-        System.out.format("Mała %.2f duża %.2f zł na 1000 cm²\n", 
-                cena32/c32.area()*1000.0,
-                cena65/c65.area()*1000.0);
-    }
+    public static void main(String[] args) {
+	   Dane.b = 34;
+       Dane.print();
+       Dane d1 = new Dane();
+       Dane d2 = new Dane();
+       d1.setA(1);
+       d2.setA(2);
+       System.out.println("d1.a = " + d1.getA() + " d2.a = " + d2.getA());
+	}
 }
+
