@@ -6,22 +6,27 @@ class Fraction {
     private int numerator;
     private int fractional;
     private int denominator;
+    
     public Fraction(int fractional, int numerator, int denominator) {
         int f = 0, n = 0, d = 0;
-        if(denominator == 0) denominator = 1;
-        if(fractional != 0) f = fractional/Math.abs(fractional);
-        if(numerator != 0) n = numerator/Math.abs(numerator);
-        d = denominator/Math.abs(denominator); 
-        if(f == 0 &&  n != 0 && d != 0) {
-            sign = n*d;
-        } else if(n != 0 && d != 0) {
-            sign = f*d*n;
-        } else sign = f;
-        
-        this.numerator = Math.abs(numerator);
-        this.fractional = Math.abs(fractional);
-        this.denominator = Math.abs(denominator);
-        pretty();
+        if(denominator == 0 || numerator == 0) {
+            this.denominator = 1;
+            this.numerator = 0;
+            if(fractional != 0) this.sign = fractional/Math.abs(fractional);
+            this.fractional = Math.abs(fractional);
+        } else {
+            
+            if(fractional != 0) f = fractional/Math.abs(fractional);
+            n = numerator/Math.abs(numerator);
+            d = denominator/Math.abs(denominator); 
+            if(f == 0)  sign = n*d;
+            else sign = f*d*n;
+            
+            this.numerator = Math.abs(numerator);
+            this.fractional = Math.abs(fractional);
+            this.denominator = Math.abs(denominator);
+            pretty();
+        } 
     }
     
     public Fraction(int fractional) {
@@ -35,11 +40,17 @@ class Fraction {
     
     public Fraction(int numerator, int denominator) {
         if(denominator == 0) denominator = 1;
-        if((denominator/Math.abs(denominator))*(numerator/Math.abs(numerator)) < 0)
-            sign = -1;
-        this.denominator = Math.abs(denominator);
-        this.numerator = Math.abs(numerator);
-        pretty();
+        if(numerator == 0) {
+            this.denominator = 1;
+            this.sign = 1;
+            this.fractional = 0;
+        } else {
+            if((denominator/Math.abs(denominator))*(numerator/Math.abs(numerator)) < 0)
+                sign = -1;
+            this.denominator = Math.abs(denominator);
+            this.numerator = Math.abs(numerator);
+            pretty();
+        }
     }
     
     public void multiply(Fraction f) {
@@ -86,6 +97,11 @@ class Fraction {
         }
         pretty();
     }
+    
+    public int getDenominator() { return denominator;}
+    public int getNumerator() { return numerator; }
+    public int getFrational() { return fractional; }
+    public int getSign() { return sign; }
     
     
     public String toString() {
