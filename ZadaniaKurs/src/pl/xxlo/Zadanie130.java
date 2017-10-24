@@ -8,7 +8,7 @@ public class Zadanie130 {
 	
 	public static void main(String[] args) {
 		Zadanie130 z = new Zadanie130();
-		z.test();
+		//z.test();
 		z.a();
 		z.b();
 	
