@@ -15,7 +15,10 @@ import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 
 public class SquareMove {
-
+    
+    static RegulatedMotor mR = new EV3LargeRegulatedMotor(MotorPort.A);
+    static RegulatedMotor mL = new EV3LargeRegulatedMotor(MotorPort.B);
+    
     public static void main(String[] args) {
 
         EV3 ev3 = (EV3) BrickFinder.getLocal();
@@ -23,11 +26,8 @@ public class SquareMove {
 
         lcd.drawString("Mikolaj S", 20, 1);
         Keys keys = ev3.getKeys();
-        
-        RegulatedMotor mR = new EV3LargeRegulatedMotor(MotorPort.A);
-        RegulatedMotor mL = new EV3LargeRegulatedMotor(MotorPort.B);
-        Port port = LocalEV3.get().getPort("S4");
-        
+        keys.waitForAnyPress();
+
        
         mR.setSpeed(400);
         mL.setSpeed(400);
@@ -47,14 +47,21 @@ public class SquareMove {
                 mL.rotate(-180, false);
                 //Delay.msDelay(1000L);
                 mR.stop(true);
-                mL.stop(true);
+                mL.stop(false);
             }
         }
-        
-        lcd.drawString("KONIEC", 1, 1);
-        
         mL.close();
         mR.close();
+        lcd.drawString("KONIEC", 1, 1);
+        keys.waitForAnyPress();
     }
 
+    public static void forward(long time, int power) {
+        mR.setSpeed(power);
+        mR.forward();
+        mL.forward();
+        Delay.msDelay(time);
+        mR.stop(true);
+        mL.stop(false);
+    }
 }
