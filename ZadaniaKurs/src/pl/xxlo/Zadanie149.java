@@ -30,7 +30,7 @@ class Pesel {
             year += 2000;
         } else year += 1900;
         int day = (int) (pesel / 100_000L) % 100;
-        return String.format("%2d-%2d-%4d", day, month, year);
+        return String.format("%02d-%02d-%4d", day, month, year);
     }
     
     //zwracający numer PESEL, informację o dacie urodzenia i
@@ -62,17 +62,18 @@ public class Zadanie149 {
     public static void main(String[] args) {
         long p1 = 75121968629L;
         long p2 = 75121968624L;
-        long p3 = 1252004567L;
+        String p3 = "01252004567";
         Pesel pesel1 = new Pesel(p1);
         Pesel pesel2 = new Pesel(p2);
         Pesel pesel3 = new Pesel(p3);
         assert pesel1.isCorrect() == true;
         assert pesel2.isCorrect() == false;
+        //assert pesel3.isCorrect() == true;
         assert pesel1.isMale() == false;
         System.out.println(pesel1.born());
         System.out.println(pesel3.born());
         assert pesel1.born().equals("19-12-1975");
-        //assert pesel3.born() == "20-05-2001";
+        assert pesel3.born() == "20-05-2001";
     }
     
 
