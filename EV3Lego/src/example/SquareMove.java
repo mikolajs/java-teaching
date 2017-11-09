@@ -33,12 +33,22 @@ public class SquareMove {
         mL.setSpeed(400);
         mR.stop();
         mL.stop();
-        for(int i = 0; i < 10; i++) {
-            if(Button.ENTER.isDown()) break;
-                forward(1000L, 500);
-                mR.rotate(190, true);
-                mL.rotate(-190, false);
-
+        for(int i = 0; i < 2; i++) {
+            if(Button.ENTER.isDown()) {
+                break;
+            }
+            for(int j = 0; j < 4; j++){
+                mR.forward();
+                mL.forward();
+                Delay.msDelay(1000L);
+                mR.stop(true);
+                mL.stop(true);
+                mR.rotate(180, true);
+                mL.rotate(-180, false);
+                //Delay.msDelay(1000L);
+                mR.stop(true);
+                mL.stop(false);
+            }
         }
         mL.close();
         mR.close();
