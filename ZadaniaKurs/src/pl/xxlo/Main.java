@@ -12,15 +12,24 @@ class B extends A {
     void callme() {
         System.out.println("Implementacja callme() z klasy B.");
     }
-    public Object clone() {
+    public A clone() {
         return new B();
     }
 }
 
+
 class Main {
     public static void main(String args[]) {
-        B b = new B();
+        /*B b = new B();
         b.callme();
         b.callmetoo();
+        A a = new B();
+        a.callmetoo();
+        a.callme()*/;
+        String a = "Hej";
+        String b = "Hejka";
+        b = b.substring(0,3);
+        System.out.println(a + " ?= " + b);
+        System.out.println(b.equals(a));
     }
 }
