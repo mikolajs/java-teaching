@@ -21,7 +21,6 @@ class PizzaWorker {
     }
     
     private int getShape() {
-        boolean ok = false;
         while(true) {
             System.out.println("Podaj kształt okrągła (1)"+
                     " kwadratowa (2), prostokątna (3)");
