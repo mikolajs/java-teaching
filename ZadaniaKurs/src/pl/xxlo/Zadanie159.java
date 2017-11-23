@@ -27,13 +27,11 @@ class Morse {
         for(int i = 0; i < words.length; i++) {
             String[] letter = words[i].split(" ");
             for(int j = 0; j < letter.length; j++) {
-                boolean found = false;
                 for(int k = 0; k < morse.length; k++) {
                     String a = "";
                     if(letter[j].equals(morse[k])) {
                         a += (char) (k + 65);
                         napis += a;
-                        found = true;
                         break;
                     }
                 }

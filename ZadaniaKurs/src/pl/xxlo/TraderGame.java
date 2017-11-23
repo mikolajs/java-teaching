@@ -3,6 +3,7 @@ package pl.xxlo;
 import java.util.Random;
 import java.util.Scanner;
 
+
 class Player {
     private int money = 1000;
     private int goods = 0;
