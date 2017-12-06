@@ -1,3 +1,4 @@
+package pl.edu.osp;
 import java.util.Random;
 
 public class Kostka {

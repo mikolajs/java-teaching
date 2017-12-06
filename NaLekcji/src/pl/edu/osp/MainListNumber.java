@@ -40,7 +40,6 @@ class ListNumber {
 		}
 		
 		public Number next() {
-//			System.out.println(nr++);
 			act = act.getNext();
 			return act.get();
 		}
@@ -66,10 +65,7 @@ class ListNumber {
 	public void push(Number numb) {
 		ListNumbItem item = new ListNumbItem(numb);
 		item.setNext(first);
-//		if(item.getNext() == null) System.out.println("Error: can't be empty");
 		first = item;
-//		System.out.println("push number " + first.num);
-//		if(first.getNext() == null) System.out.println("Error: can't be empty");
 		items++;
 	}
 	public ListNumberIterator iterator() {
@@ -114,7 +110,6 @@ public class MainListNumber {
 			pos++;
 		}
 		System.out.println(" At position " +  p + " is " + listDouble.getAt(p));
-		
-		
+		System.out.println(" At position " +  p + " is " + listDouble.getAt(p).getClass().getName());
 	}
 }
