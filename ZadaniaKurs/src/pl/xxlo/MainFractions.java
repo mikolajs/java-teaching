@@ -128,7 +128,8 @@ class Fraction {
            b = a;
            a = c;
         }
-        while( a % b != 0) {
+        c = a % b;
+        while(c != 0) {
             c = a % b;
             a = b;
             b = c;
