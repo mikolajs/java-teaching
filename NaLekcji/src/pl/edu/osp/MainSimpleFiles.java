@@ -61,7 +61,7 @@ public class MainSimpleFiles {
 		solution2();
 		solutionExtra1();
 		solutionExtra2();
-
+		divideBy11();
 	}
 
 	public static void mkFile() {
@@ -78,13 +78,10 @@ public class MainSimpleFiles {
 	}
 
 	public static void solution1() {
-		File file = new File("suma.txt");
-		Scanner scanner = null;
-		try {
-			scanner = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("Nie znaleziono pliku");
-			System.exit(0);
+		Scanner scanner = loadFile("srednia.txt");
+		if(scanner == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
 		}
 		int suma = 0;
 		while (scanner.hasNextInt()) {
@@ -98,13 +95,10 @@ public class MainSimpleFiles {
 	}
 	
 	public static void solution2() {
-		File file = new File("srednia.txt");
-		Scanner scanner = null;
-		try {
-			scanner = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("Nie znaleziono pliku");
-			System.exit(0);
+		Scanner scanner = loadFile("srednia.txt");
+		if(scanner == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
 		}
 		int numbers = 0;
 		while (scanner.hasNextLong()) {
@@ -113,11 +107,10 @@ public class MainSimpleFiles {
 		}
 		scanner.close();
 		System.out.format("Ilość liczb: %d\n", numbers);
-		try {
-			scanner = new Scanner(file);
-		} catch (FileNotFoundException e) {
-			System.out.println("Nie znaleziono pliku");
-			System.exit(0);
+		scanner  = loadFile("srednia.txt");
+		if(scanner == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
 		}
 		long tmp = 0;
 		long avg = 0;
@@ -135,18 +128,11 @@ public class MainSimpleFiles {
 	}
 	
 	public static void solutionExtra1() {
-	    File f = new File("srednia.txt");
-        if( !f.exists() && !f.isFile()) {
-            System.out.println("Nie mogę znaleźć pliku");
-            return; 
-        }
-        Scanner s = null;
-        try {
-            s = new Scanner(f);
-        } catch(FileNotFoundException e) {
-            System.out.println("Nie mogę otworzyć pliku");
-            return;
-        }
+		Scanner s = loadFile("srednia.txt");
+		if(s == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
+		}
         long max = Long.MIN_VALUE;
         long min = Long.MAX_VALUE;
         long tmp = 0;
@@ -162,18 +148,11 @@ public class MainSimpleFiles {
 	
 	public static void solutionExtra2() {
 	    int numbers[] = new int[10];
-	    File f = new File("suma.txt");
-        if( !f.exists() && !f.isFile()) {
-            System.out.println("Nie mogę znaleźć pliku");
-            return; 
-        }
-        Scanner s = null;
-        try {
-            s = new Scanner(f);
-        } catch(FileNotFoundException e) {
-            System.out.println("Nie mogę otworzyć pliku");
-            return;
-        }
+	    Scanner s = loadFile("suma.txt");
+		if(s == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
+		}
  
         while(s.hasNextInt()) { 
             numbers[s.nextInt() % 10]++;
@@ -189,6 +168,49 @@ public class MainSimpleFiles {
         }
         
         s.close();
+	}
+	public static void divideBy11() {
+		Scanner sc = loadFile("srednia.txt");
+		if(sc == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
+		}
+		int n = 0;
+		while(sc.hasNextLong()) {
+			if( sc.nextLong() % 11L == 0) n++;
+		}
+		System.out.println("Ilość podzielnych przez 11 to: " + n);
+	}
+	
+	public static void numbersFormRange() {
+		Scanner sc = loadFile("srednia.txt");
+		if(sc == null) {
+			System.out.println("Nie mogę wczytać pliku!");
+			return;
+		}
+		int n = 0;
+		long tmp;
+		while(sc.hasNextLong()) {
+			tmp = sc.nextLong();
+			if(tmp >= 100_000_000L && tmp <= 1000_000_000) n++;
+		}
+		System.out.println("Ilość liczb z zakresu 100 do 1000 milionów: " + n);
+	}
+	
+	public static Scanner loadFile(String name) {
+		File f = new File(name);
+        if( !f.exists() && !f.isFile()) {
+            System.out.println("Nie mogę znaleźć pliku");
+            return null; 
+        }
+        Scanner s = null;
+        try {
+            s = new Scanner(f);
+        } catch(FileNotFoundException e) {
+            System.out.println("Nie mogę otworzyć pliku");
+            return null;
+        }
+        return s;
 	}
 
 }
