@@ -12,6 +12,7 @@ public class ColorSensorRGB {
 	EV3ColorSensor sensor;
 	SampleProvider samProv;
 	float[] sample;
+	private int r, g, b;
 	
 	public ColorSensorRGB(Port port){
 		sensor = new EV3ColorSensor(port);
@@ -20,14 +21,42 @@ public class ColorSensorRGB {
 	}
 	
 	public Color getRGB() {
-		int r = 0, g = 0, b = 0;
-		samProv.fetchSample(sample, 0);
-		if(sample.length == 3) {
-			r = (int) sample[0];
-			g = (int) sample[1];
-			b = (int) sample[2];
-		}
+		readRGB();
 		return new Color(r,g,b);
 	}
+	
+	public int getRed() {
+		readRGB();
+		return r;
+	}
+	
+	public int getGreen() {
+		readRGB();
+		return g;
+	}
+	
+	public int getBlue() {
+		readRGB();
+		return b;
+	}
+	
+	public void close() {
+		sensor.close();
+	}
+	
+	public int getBrightness() {
+		return r + b + g;
+	}
+	
+	private void readRGB() {
+		samProv.fetchSample(sample, 0);
+		if(sample.length == 3) {
+			r = (int) (sample[0]*156.0f);
+			g = (int) (sample[1]*156.0f);
+			b = (int) (sample[2]*156.0f);
+		}
+	}
+	
+	
 	
 }
