@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
+/* PA05_POT */
 public class Main499 {
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         System.out.println("Podaj D i a oraz b");
         Scanner s = new Scanner(System.in);
         int D = s.nextInt();
