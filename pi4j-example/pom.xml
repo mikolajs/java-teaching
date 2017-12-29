@@ -17,6 +17,12 @@
         <compiler-plugin.version>3.1</compiler-plugin.version>
         <assembly-plugin.version>2.4</assembly-plugin.version>
  <ant-jsch.version>1.9.7</ant-jsch.version>
+ <jsch.version>0.1.53</jsch.version>
+ <ant-contrib.version>20020829</ant-contrib.version>
+ <pi4j.dev.host>192.168.0.13</pi4j.dev.host>
+ <pi4j.dev.user>pi</pi4j.dev.user>
+ <pi4j.dev.password>raspberry</pi4j.dev.password>
+ <pi4j.dev.port>22</pi4j.dev.port>
     </properties>
  
     <dependencies>
@@ -73,7 +79,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        org.calpilot.Pi4jTest
+                                    pl.edu.osp.Main
                                     </mainClass>
                                 </manifest>
                             </archive>

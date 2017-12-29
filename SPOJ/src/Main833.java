@@ -31,6 +31,6 @@ public class Main833 {
             r *= n;
             n--;
         }
-        return n;
+        return r;
     }
 }
