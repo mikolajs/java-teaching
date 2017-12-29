@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+/* BINOMS - Dwumiany */
 public class Main833 {
     public static void main(String[] args) {
         System.out.println("");
@@ -20,6 +21,6 @@ public class Main833 {
             r *= n;
             n--;
         }
-        return n;
+        return r;
     }
 }
