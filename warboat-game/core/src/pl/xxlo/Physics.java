@@ -2,12 +2,12 @@ package pl.xxlo;
 
 import com.badlogic.gdx.math.MathUtils;
 
-class Physics {
+public class Physics {
     static private float cX = 0f;
     static private float cY = 0f;
 
 
-    static void setCenter(float centerX, float centerY){
+    public static void setCenter(float centerX, float centerY){
         cX = centerX;
         cY = centerY;
     }

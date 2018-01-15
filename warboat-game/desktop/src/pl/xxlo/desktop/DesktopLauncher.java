@@ -12,6 +12,7 @@ public class DesktopLauncher {
         config.width = 1200;
         config.forceExit = false;
         config.useGL30 = true;
+        config.resizable = true;
         new LwjglApplication(new WarBoat(), config);
     }
 }

@@ -72,9 +72,9 @@ public class Ship {
     public void render(SpriteBatch batch) {
         hull.setRotation(rotationHull);
         hull.draw(batch);
-        gun.setRotation(angleToScreen(this.gunDir, this.startDirGun));
+//        gun.setRotation(angleToScreen(this.gunDir, this.startDirGun));
         gun.draw(batch);
-        launcher.setRotation(angleToScreen(launcherDir, startDirLauncher));
+//        launcher.setRotation(angleToScreen(launcherDir, startDirLauncher));
 
         launcher.draw(batch);
         gun.setRotation(Physics.angleToScreen(this.gunDir));
@@ -188,15 +188,7 @@ public class Ship {
     }
 
 
-<<<<<<< HEAD
-    private  void rotateLuncher(boolean left){
-        if(left) {
-            if(this.launcherDir < this.maxDir  )
-                this.launcherDir += 3f;
-        } else {
-            if(this.launcherDir >  this.maxDir) {
-                this.launcherDir -= 3f;
-=======
+
     private void rotateLuncher(boolean left) {
         if (left) {
             this.launcherDir -= 2f;
@@ -234,7 +226,6 @@ public class Ship {
                     t.launch(angle);
                     break;
                 }
->>>>>>> 82125013c384afdf2bb4444aca2d2aac9c569402
             }
         }
 

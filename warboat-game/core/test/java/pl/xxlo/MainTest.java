@@ -1,5 +1,5 @@
-package pl.xxlo;
-
+package java.pl.xxlo;
+import pl.xxlo.Physics;
 
 import org.junit.Before;
 import org.junit.Test;
