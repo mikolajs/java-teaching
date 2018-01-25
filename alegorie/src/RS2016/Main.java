@@ -15,8 +15,11 @@ Podaj, które to pokolenie oraz liczbę żywych komórek w tym pokoleniu.
 public class Main {
 
 	public static void main(String[] arg) {
+		Zadanie4 zad4 = new Zadanie4();
+		zad4.run();
+		
 		System.out.println("Game of life");
-		GameOfLife game = new GameOfLife("/home/ms/gra.txt");
+		GameOfLife game = new GameOfLife("dane/RS2016/gra.txt");
 
 		assert (game.getLifes() == 7);
 		assert (game.getCountNeighbor(5, 9) == 5);

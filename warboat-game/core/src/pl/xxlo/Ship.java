@@ -72,7 +72,7 @@ public class Ship {
     public void render(SpriteBatch batch) {
         hull.setRotation(rotationHull);
         hull.draw(batch);
-//        gun.setRotation(angleToScreen(this.gunDir, this.startDirGun));
+//             gun.setRotation(angleToScreen(this.gunDir, this.startDirGun));
         gun.draw(batch);
 //        launcher.setRotation(angleToScreen(launcherDir, startDirLauncher));
 
