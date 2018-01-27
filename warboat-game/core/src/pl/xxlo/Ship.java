@@ -23,7 +23,7 @@ public class Ship {
     int readyLauncher = 0;
     float launcherDir = startDirLauncher;
     float gunDir = startDirGun;
-    private Sprite hull;
+ private Sprite hull;
     private Sprite gun;
     private Sprite launcher;
     private BitmapFont font;
@@ -237,5 +237,11 @@ public class Ship {
             if(!bullet.isMoving()) bullet.launch(angle);
             readyGun = 0;
         }
+    }
+    
+    public void dispose() {
+    	 
+    	    font.dispose();;
+    	
     }
 }
