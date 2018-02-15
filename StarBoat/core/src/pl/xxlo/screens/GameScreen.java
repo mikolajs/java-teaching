@@ -11,7 +11,7 @@ public class GameScreen extends AbstractScreen {
 	private final Ship ship;
 	public GameScreen(ScreenManager manager) {
 		super(manager);
-		img = new Texture(Gdx.files.internal("data/sea.png"));
+		img = new Texture(Gdx.files.internal("data/background.jpg"));
 		ship = new Ship();
 	}
 	

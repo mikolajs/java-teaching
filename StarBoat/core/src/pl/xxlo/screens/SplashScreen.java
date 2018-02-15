@@ -25,7 +25,7 @@ public class SplashScreen extends AbstractScreen {
 
 	public SplashScreen(ScreenManager manager) {
 		super(manager);
-		texture = new Texture(Gdx.files.internal("data/river.png"));
+		texture = new Texture(Gdx.files.internal("data/galaxy.jpg"));
 		FileHandle fh = Gdx.files.internal("data/demotext.txt");
 		subtitles = fh.readString().split("\n");
 

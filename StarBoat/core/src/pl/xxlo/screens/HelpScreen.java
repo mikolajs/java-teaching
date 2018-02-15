@@ -20,7 +20,7 @@ public class HelpScreen extends AbstractScreen {
 	
 	public HelpScreen(ScreenManager manager) {
 		super(manager);
-		background = new Texture(Gdx.files.internal("data/river.png"));
+		background = new Texture(Gdx.files.internal("data/galaxy.jpg"));
 		 font = new BitmapFont();
 	     font.setColor(Color.RED);
 	     font.getData().setScale(1f);

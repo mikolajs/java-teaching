@@ -5,8 +5,8 @@ import pl.xxlo.*;
 
 public class ScreenManager {
 
-	final private WarBoatGame game;
-	public ScreenManager(WarBoatGame game) {
+	final private WarBoat game;
+	public ScreenManager(WarBoat game) {
 		this.game = game;
 		setStartScreen();
 	}
