@@ -5,7 +5,9 @@
 *.log
 
 #
-/niewazny
+
+StarBoat/core/build
+StarBoat/desktop/build
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
