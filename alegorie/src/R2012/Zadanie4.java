@@ -1,6 +1,10 @@
 package R2012;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 
@@ -14,8 +18,10 @@ public class Zadanie4 {
 		zad.test();
 		System.out.println("A. zakodowane:");
 		System.out.println(zad.zadA());
+		//zad.save("dane/R2012/wynikA.txt",zad.zadA());
 		System.out.println("B. odkodowane:");
 		System.out.println(zad.zadB());
+		//zad.save("dane/R2012/wynikB.txt",zad.zadB());
 		
 	}
 
@@ -77,6 +83,14 @@ public class Zadanie4 {
 			if(sc != null) sc.close();
 		}
 		return sb.toString().split(" ");
+	}
+	
+	public void save(String name, String content) {
+		try {
+		Files.write(Paths.get(name), content.getBytes());
+		} catch(IOException e) {
+			System.out.println("Path not found, DON'T SAVED");
+		}
 	}
 	
 	private void test() {
