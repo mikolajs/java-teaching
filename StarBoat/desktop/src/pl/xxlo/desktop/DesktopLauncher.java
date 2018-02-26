@@ -3,7 +3,7 @@ package pl.xxlo.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
-import pl.xxlo.WarBoat;
+import pl.xxlo.StarBoat;
 
 public class DesktopLauncher {
     public static void main(String[] arg) {
@@ -14,6 +14,6 @@ public class DesktopLauncher {
         config.forceExit = false;
         config.useGL30 = true;
         config.resizable = true;
-        new LwjglApplication(new WarBoat(), config);
+        new LwjglApplication(new StarBoat(), config);
     }
 }

@@ -12,6 +12,8 @@ public class Ship {
     final float startDirGun = 0f;
     final float maxPower = 20f;
     final float minPower = -10f;
+    
+    final float gunXRel = 16f;
 
     long timer = 0L;
     float speed = 0f;
@@ -25,42 +27,45 @@ public class Ship {
     private Sprite gun;
     private BitmapFont font;
     private boolean mainGun = true;
-    private float centerX = Gdx.graphics.getWidth() / 2f - 100f;
+    private float centerX = Gdx.graphics.getWidth() / 2f + 150f;
     private float centerY = Gdx.graphics.getHeight() / 2f;
+   
     private Torpedo[] torps;
     private Bullet bullet;
+    
+    final private int maxLoadTorp = 600;
+    private int loadTorp = maxLoadTorp;
 
 
     public Ship() {
-        Physics.setCenter(centerX, centerY);
-        Physics.testSinDeg();
-
-
+    	 Physics.setCenter(centerX + gunXRel, centerY);
+         Physics.testSinDeg();
+      
         hull = new Sprite(new Texture(Gdx.files.internal("data/ship.png")));
         gun = new Sprite(new Texture(Gdx.files.internal("data/shipgun.png")));
+        
+        hull.setRotation(rotationHull);
+        hull.setCenter(centerX, centerY);
+        
+        gun.setCenter( centerX + gunXRel, centerY);
+
         //launcher = new Sprite(new Texture(Gdx.files.internal("data/shiptorp.png")));
         font = new BitmapFont();
         font.setColor(Color.RED);
         font.getData().setScale(1f);
 
-        hull.setCenter(centerX, centerY);
-        float gunX = centerX - gun.getWidth() / 2f + 5f;
-        float gunY = centerY - gun.getHeight() / 2f;
-        //z dupy wzięte 
-        float launcherX = centerX - hull.getWidth() / 2f - 19f;
-        float launcherY = centerY - hull.getHeight() / 2f;
-        
-        gun.setPosition(gunX, gunY);
-
         torps = new Torpedo[3];
         Pixmap pxm = new Pixmap(6, 6, Pixmap.Format.RGBA8888);
-        pxm.setColor(Color.BLUE);
+        pxm.setColor(Color.GREEN);
         pxm.fillCircle(3, 3, 3);
-        for(int i = 0; i < torps.length; i++) torps[i] = new Torpedo( launcherX, launcherY,
-                new Texture(pxm));
-        pxm.setColor(Color.RED);
-        bullet = new Bullet(gunX, gunY, new Texture(pxm) );
-
+        for(int i = 0; i < torps.length; i++) torps[i] = new Torpedo( 
+        		centerX - hull.getWidth() / 2f, centerY,new Texture(pxm));
+        Pixmap pxm2 = new Pixmap(6, 6, Pixmap.Format.RGBA8888);
+        pxm2.setColor(Color.RED);
+        pxm2.fillCircle(3, 3, 3);
+        bullet = new Bullet(centerX + gunXRel, centerY, new Texture(pxm2));
+        
+       
       
     }
 
@@ -126,6 +131,7 @@ public class Ship {
     }
 
     private boolean isTouched(Sprite s, int x, int y) {
+    	
         //System.out.println(String.format("touch (%d, %d) sprite position (%f, %f)" +
         //        " size (%f, %f)",
         //        x, y, s.getX(), s.getY(), s.getWidth(), s.getHeight()));
@@ -134,8 +140,10 @@ public class Ship {
     }
 
     private boolean isTouchedHull(int x, int y){
-        return (x > hull.getX() && x < (hull.getX() + hull.getWidth())
-                && y > hull.getY() && y < (hull.getY() + hull.getHeight()));
+    	float distance = (centerY-y)*(centerY-y) + (centerX -x)*(centerX - x);
+    	return distance <= 900f;
+//        return (x > hull.getX() && x < (hull.getX() + hull.getWidth())
+//                && y > hull.getY() && y < (hull.getY() + hull.getHeight()));
     }
 
     /* @return in degrees by up screen to clock wise
@@ -171,7 +179,7 @@ public class Ship {
             System.out.println(String.format("Launch Torp! %f" , angle));
             readyLauncher = 0;
             for(Torpedo t: torps){
-                if(!t.isMoving() && t.isReady()){
+                if(!t.isMoving()) {
                     t.launch(angle);
                     break;
                 }

@@ -30,12 +30,13 @@ public class Bullet {
         sprite = new Sprite(texture);
         font = new BitmapFont();
         font.setColor(Color.RED);
-        font.getData().setScale(2f);
+        font.getData().setScale(1f);
     }
 
     public void render(SpriteBatch batch){
         if(moving) {
             move();
+    		//sprite.setPosition(cX, cY);
             sprite.draw(batch);
             drawInfo(batch);
         }
@@ -46,12 +47,12 @@ public class Bullet {
     public void launch(float angle){
         this.angle = angle;
         sprite.setRotation(Physics.angleToScreen( angle));
+        x = cX; y = cY;
         moving = true;
     }
 
     public void drawInfo(SpriteBatch batch) {
         font.draw(batch, "Bull a: " + angle, 10, 10);
-        font.draw(batch, "Bull rotate: " + Physics.angleToScreen(angle), 10, 50);
     }
 
     private void move(){

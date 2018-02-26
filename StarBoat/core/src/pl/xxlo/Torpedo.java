@@ -1,9 +1,7 @@
 package pl.xxlo;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,7 +18,7 @@ public class Torpedo {
     private float distance = 0.0f;
     private boolean moving = false;
     private BitmapFont font;
-    private int timeGo = 0;
+    
 
     public Torpedo(float X, float Y, Texture texture){
         cX = X;
@@ -30,11 +28,10 @@ public class Torpedo {
         sprite = new Sprite(texture);
         font = new BitmapFont();
         font.setColor(Color.RED);
-        font.getData().setScale(2f);
+        font.getData().setScale(1f);
     }
 
     public void render(SpriteBatch batch, float speed){
-        timeGo += 1;
         if(moving) {
             move(speed);
             sprite.draw(batch);
@@ -43,12 +40,9 @@ public class Torpedo {
     }
 
     public boolean isMoving(){ return moving;}
-    public boolean isReady(){ return  (timeGo > 400) && !moving;}
 
     public void launch(float angle){
-        timeGo = 0;
         this.angle = angle;
-        sprite.setRotation(Physics.angleToScreen( angle));
         moving = true;
     }
 
@@ -65,7 +59,7 @@ public class Torpedo {
             x += vx;
             y += vy;
             distance += v;
-            sprite.setPosition(x, y);
+            sprite.setCenter(x, y);
         } else {
             moving = false;
             distance = 0.0f;

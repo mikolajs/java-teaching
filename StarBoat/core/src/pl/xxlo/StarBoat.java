@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import pl.xxlo.screens.ScreenManager;
 
-public class WarBoat extends Game {
+public class StarBoat extends Game {
     SpriteBatch batch;
     ScreenManager manager;
 
