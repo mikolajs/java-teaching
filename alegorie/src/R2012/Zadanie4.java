@@ -18,10 +18,10 @@ public class Zadanie4 {
 		zad.test();
 		System.out.println("A. zakodowane:");
 		System.out.println(zad.zadA());
-		//zad.save("dane/R2012/wynikA.txt",zad.zadA());
+		zad.save("dane/R2012/wynikA.txt",zad.zadA());
 		System.out.println("B. odkodowane:");
 		System.out.println(zad.zadB());
-		//zad.save("dane/R2012/wynikB.txt",zad.zadB());
+		zad.save("dane/R2012/wynikB.txt",zad.zadB());
 		
 	}
 
