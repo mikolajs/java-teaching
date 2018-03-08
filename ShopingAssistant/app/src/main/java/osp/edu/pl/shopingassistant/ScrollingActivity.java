@@ -1,5 +1,6 @@
 package osp.edu.pl.shopingassistant;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,14 +19,25 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(ListeningActivity.ARTICLE_MESSAGE);
+        //only for test, replace by adding checkbox to list
+        Snackbar.make(toolbar.getRootView(), message, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+
+        FloatingActionButton fab = findViewById(R.id.runAddThing);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                goListening(view);
+
             }
         });
+    }
+
+    public void goListening(View view){
+        Intent intent = new Intent(this, ListeningActivity.class);
+        startActivity(intent);
     }
 
     @Override
