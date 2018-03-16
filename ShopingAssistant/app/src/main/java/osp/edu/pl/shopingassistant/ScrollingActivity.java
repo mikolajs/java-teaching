@@ -3,12 +3,12 @@ package osp.edu.pl.shopingassistant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -22,8 +22,8 @@ public class ScrollingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(ListeningActivity.ARTICLE_MESSAGE);
         //only for test, replace by adding checkbox to list
-        Snackbar.make(toolbar.getRootView(), message, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT).show();
 
         FloatingActionButton fab = findViewById(R.id.runAddThing);
         fab.setOnClickListener(new View.OnClickListener() {

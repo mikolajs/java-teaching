@@ -19,5 +19,8 @@
 
     <string name="title_activity_listening">ListeningActivity</string>
     <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="microphone_info">Kliknij mikrofon,\n żeby nagrać</string>
+    <string name="articleInsert">Wpisz artykuł</string>
+    <string name="speech_prompt">Powiedz coś</string>
+    <string name="speech_not_supported">Twoje urządzenie nie obsługuje rozpoznawania mowy</string>
 </resources>
