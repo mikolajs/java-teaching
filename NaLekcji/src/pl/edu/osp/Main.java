@@ -5,66 +5,58 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.Scanner;
 
-
 class Main {
 
-    public static void main(String[] args) {
-    	Main m = new Main();
-    	System.out.println();
-    	m.test();
-    	
-    	StringBuilder sb = new StringBuilder();
-    	
-    	try {
-			Scanner s1 = new Scanner(new File("tj.txt"));
-			Scanner s2 = new Scanner(new File("kucze1.txt"));
-			while (s1.hasNext()) {
-				sb.append(m.code(s1.next(), s2.next()) + "\n"); 
-				s2.close();
-				s1.close();
-			}
 
-		} catch (Exception e) {
-			System.out.println("Błąd " + e.toString());
-		}
-    	
-    	
-    	try {
-    		Files.write(Paths.get("wynikA.txt"), sb.toString().getBytes());
-    	} catch (IOException e) {
-    		System.out.println("Błąd" + e.toString());
-    	}
-    	
-    	
-    	
+
+    public String koduj(String alamakota) {
+        String zakodowany = "";
+        int k = 0;
+        int j;
+        for (int i = 0; i < alamakota.length(); i++) {
+            j = (int) alamakota.charAt(i);
+            k++;
+            if (k > 3)
+                k = 1;
+
+            if(j != 32)
+                j += k;
+            else
+                k--;
+            zakodowany += (char) j;
+           
+        }
+        return zakodowany;
     }
-    
-    public String code(String crypted, String key) {
-    	String decrypted = "";
-    	int k;
-		for(int i = 0; i < crypted.length(); i++) {
-			k = (int) crypted.charAt(i) + (int) key.charAt(i % key.length()) - 64;
-			if(k > 90) k -= 26;
-			decrypted += (char) k;
-		}	
-    	return decrypted;
+
+    public String odkoduj(String zakodowany) {
+        String odkodowany = "";
+        int k = 0;
+        int w;
+        for (int q = 0; q < zakodowany.length(); q++) {
+            w = (int) zakodowany.charAt(q);
+            k++;
+            if (k > 3)
+                k = 1;
+            if(w != 32)
+            w -= k;
+            else
+                k--;
+            odkodowany += (char) w;
+        }
+        return odkodowany;
     }
-    
-    public String decode(String decrypted, String key) {
-    	String crypted = "";
-    	int k;
-    	for(int i = 0; i < decrypted.length(); i++) {
-			k = (int) decrypted.charAt(i) -((int) key.charAt(i % key.length()) - 64);
-			if(k < 65) k += 26;
-			crypted += (char) k;
-		}	
-    	return crypted;
+
+    public static void main(String[] args) {
+        System.out.println("Podaj napis");
+        Scanner sc = new Scanner(System.in);
+        String alamakota = sc.nextLine().toUpperCase();
+        Main k = new Main();
+        String zakodowany = k.koduj(alamakota);
+        System.out.println(zakodowany);
+        String odkodowany = (k.odkoduj(zakodowany));
+        System.out.println(odkodowany);
+        sc.close();
     }
-    
-    public void test() {
-    	assert code("LATO", "WODA").equals("IPXP");
-    	assert code("MARTA", "TOR").equals("GPJNP");
-    	assert decode("IPXP", "WODA").equals("LATO");
-    	assert decode("GPJNP", "TOR").equals("MARTA");
-    }
+
 }
