@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/* zadanie 293 */
 public class Zadanie4 {
 	
 	String[] data;
@@ -15,10 +16,15 @@ public class Zadanie4 {
 	public Zadanie4() {
 		loadFile();
 		test();
+		solve();
 	}
 	
 	public void solve() {
-		
+		for(String str : data) {
+			if(isPalindrom(str)) {
+				System.out.println(str);
+			}
+		}
 	}
 	
 	private void loadFile() {
@@ -27,7 +33,7 @@ public class Zadanie4 {
 		int counter = 0;
 		try {
 			sc = new Scanner(new File("dane/P2010/dane.txt"));
-			while(sc.hasNextInt()) {
+			while(sc.hasNext()) {
 				if(counter < data.length) {
 				  data[counter++] = sc.nextLine().trim();	
 				} else System.out.println("Za dużo linii???");
