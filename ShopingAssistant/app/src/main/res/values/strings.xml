@@ -1,26 +1,12 @@
 <resources>
     <string name="app_name">Shoping Assistant</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-    </string>
     <string name="action_settings">Settings</string>
-
-    <string name="title_activity_listening">ListeningActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="microphone_info">Kliknij mikrofon,\n żeby nagrać</string>
-    <string name="articleInsert">Wpisz artykuł</string>
-    <string name="speech_prompt">Powiedz coś</string>
-    <string name="speech_not_supported">Twoje urządzenie nie obsługuje rozpoznawania mowy</string>
+    <string name="shoping_list">Shoping List</string>
+    <string name="title_activity_listening">Shoping items</string>
+    <string name="microphone_info">Click microphone \n to record somethin</string>
+    <string name="articleInsert">Write item</string>
+    <string name="speech_prompt">Say something</string>
+    <string name="speech_not_supported">Your device not support voice recognation</string>
+    <string name="add_item_btn">Add</string>
 </resources>
