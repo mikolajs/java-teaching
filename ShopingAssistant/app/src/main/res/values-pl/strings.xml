@@ -9,4 +9,5 @@
     <string name="speech_prompt">Powiedz coś</string>
     <string name="speech_not_supported">Twoje urządzenie nie obsługuje rozpoznawania mowy</string>
     <string name="add_item_btn">Dodaj</string>
+    <string name="return_to_list">Powrót do listy zakupów</string>
 </resources>

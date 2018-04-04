@@ -1,6 +1,7 @@
 package osp.edu.pl.shopingassistant;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,11 @@ public class GoodsAdapter extends BaseAdapter {
     @Override
     public View getView(int index, View reuse, ViewGroup parent) {
 
-        CheckedTextView item = parent.findViewById(R.id.checkedTextView);
+        TextView item = parent.findViewById(R.id.textViewList);
                 //this.inflter.inflate( android.R.layout.simple_list_item_multiple_choice, null);
         String name = names[index];
         item.setText(name);
+        item.setTextColor(Color.argb(0, 0, 0, 255));
         return item;
     }
 

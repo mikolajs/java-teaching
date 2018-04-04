@@ -5,18 +5,21 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ScrollingActivity extends AppCompatActivity {
 
     ListView itemsList;
     String message = null;
     GoodsArrayAdapter customAdapter;
+    ArrayList<String> arr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,12 @@ public class ScrollingActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.mipmap.ic_trolley);
         setSupportActionBar(toolbar);
         itemsList = findViewById(R.id.listView);
-        customAdapter = new GoodsArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_multiple_choice,
-                new ArrayList<String>());
+        loadGoodsFromDB();
+        customAdapter = new GoodsArrayAdapter(getBaseContext(),
+                android.R.layout.simple_list_item_multiple_choice,
+                arr);
         itemsList.setAdapter(customAdapter);
+        //itemsList.setBackgroundColor(Color.BLACK);
 
 //        itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //
@@ -50,9 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
 //
 //        });
 
-        Intent intent = getIntent();
 
-        message = intent.getStringExtra(ListeningActivity.ARTICLE_MESSAGE);
 
         //if(message != null) {
         //    customAdapter.addItem(message);
@@ -76,6 +80,39 @@ public class ScrollingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void delGoods(View view){
+        int itemsNum = itemsList.getAdapter().getCount();
+        SparseBooleanArray checked = itemsList.getCheckedItemPositions();
+        ArrayList<String> itemsToDel = new ArrayList<>();
+        for(int i = 0; i < itemsNum; i++){
+            if(checked.get(i)) itemsToDel.add(customAdapter.getItem(i));
+        }
+        System.out.println("TO DELete ITEMS");
+        for(String s : itemsToDel){
+            System.out.println(s);
+        }
+        Iterator<String> it = arr.iterator();
+        while (it.hasNext()){
+            String toDel = it.next();
+            //System.out.println(toDel);
+            for(String s : itemsToDel){
+                if(toDel.equals(s)) {
+                    it.remove();
+                    System.out.println("Removed " + s);
+                    break;
+                }
+            }
+        }
+        System.out.println("TO DELete ITEMS after");
+        for(String s : arr){
+            System.out.println(s);
+        }
+        customAdapter = new GoodsArrayAdapter(getBaseContext(),
+                android.R.layout.simple_list_item_multiple_choice,
+                arr);
+        itemsList.setAdapter(customAdapter);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -94,6 +131,15 @@ public class ScrollingActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadGoodsFromDB(){
+        arr = new ArrayList<>();
+        System.out.println("Load from DB");
+        arr.add("masło");
+        arr.add("mydło");
+        arr.add("powidło");
+        arr.add("kapusta");
     }
 
 }

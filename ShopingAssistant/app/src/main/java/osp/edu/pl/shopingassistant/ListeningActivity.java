@@ -20,12 +20,11 @@ import java.util.Locale;
  */
 public class ListeningActivity extends AppCompatActivity {
 
-    public static final String ARTICLE_MESSAGE = "osp.edu.pl.shopingassistant.MESSAGE";
-
 
    // private Button ok;
     private TextView article;
     private ImageButton btnSpeak;
+    private ImageButton btnBack;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -49,11 +48,16 @@ public class ListeningActivity extends AppCompatActivity {
         String text = article.getText().toString();
         if(text.length() < 2) return;
         else {
-            Intent intent = new Intent(this, ScrollingActivity.class);
-            intent.putExtra(ARTICLE_MESSAGE, text);
-            startActivity(intent);
+            //add add to database;
+            article.setText("");
+            return;
         }
 
+    }
+
+    public void returnToList(View view){
+            Intent intent = new Intent(this, ScrollingActivity.class);
+            startActivity(intent);
     }
 
     /**
