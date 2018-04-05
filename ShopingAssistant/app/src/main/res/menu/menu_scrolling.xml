@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="osp.edu.pl.shopingassistant.ScrollingActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_del"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/action_del"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add"
+        android:orderInCategory="100"
+        android:title="@string/action_add"
         app:showAsAction="never" />
 </menu>

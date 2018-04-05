@@ -1,7 +1,10 @@
 package osp.edu.pl.shopingassistant;
 
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import osp.edu.pl.shopingassistant.GoodsListDataContract.GoodsListData;
 
 
 /**
@@ -26,10 +31,14 @@ public class ListeningActivity extends AppCompatActivity {
     private ImageButton btnSpeak;
     private ImageButton btnBack;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    GoodsListDataHelper dbObj;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbObj = new GoodsListDataHelper(getBaseContext());
+        db = dbObj.getWritableDatabase();
         //ok = findViewById(R.id.button) ;
         setContentView(R.layout.activity_listening);
         article = findViewById(R.id.editText);
@@ -49,6 +58,10 @@ public class ListeningActivity extends AppCompatActivity {
         if(text.length() < 2) return;
         else {
             //add add to database;
+            ContentValues values = new ContentValues();
+            values.put(GoodsListData.COLUMN_NAME_NAME, text.trim());
+            long newRowId = db.insert(GoodsListData.TABLE_NAME, null, values);
+            System.out.println("id of article added: " + newRowId);
             article.setText("");
             return;
         }
@@ -98,6 +111,12 @@ public class ListeningActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        dbObj.close();
+        super.onDestroy();
     }
 
 }
