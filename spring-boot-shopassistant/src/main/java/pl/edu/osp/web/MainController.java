@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
 	@RequestMapping("/")
 	String home() {
-		return "Witaj w ścieżce głównej";
+		
+		return "Ścieżka główna. Wybierz prawidłowy URL";
 	}
 
-	 @RequestMapping("/hello")
-	    public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
-	        model.addAttribute("name", name);
-	        return "witaj";
-	    }
+	@RequestMapping("/list")
+	public String hello(Model model, @RequestParam(value = "mail", required = true) String mail) {
+		model.addAttribute("mail", mail);
+		return "witaj";
+	}
 }

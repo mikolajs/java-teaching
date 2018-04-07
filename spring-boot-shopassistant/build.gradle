@@ -25,7 +25,8 @@ repositories {
 
 dependencies {
    compile("org.springframework.boot:spring-boot-starter-web")
-   testCompile("junit:junit")
+   compile('com.fasterxml.jackson.core:jackson-databind:2.9.5')
+   testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
  
