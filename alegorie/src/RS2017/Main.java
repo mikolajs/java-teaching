@@ -1,4 +1,4 @@
-package R2017;
+package RS2017;
 public class Main {
 
 	public static void main(String[] args) {

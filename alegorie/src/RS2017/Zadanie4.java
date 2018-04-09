@@ -1,4 +1,4 @@
-package R2017;
+package RS2017;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,7 +17,7 @@ public class Zadanie4 {
 	
 	Zadanie4(){
 		
-		File file = new File("dane/R2017/binarne.txt");
+		File file = new File("dane/RS2017/binarne.txt");
 		binary = new String[500];
 		try {
 			Scanner sc = new Scanner(file);

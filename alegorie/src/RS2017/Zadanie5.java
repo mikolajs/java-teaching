@@ -1,4 +1,4 @@
-package R2017;
+package RS2017;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
