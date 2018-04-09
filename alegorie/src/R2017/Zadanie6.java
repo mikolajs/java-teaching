@@ -41,20 +41,80 @@ public class Zadanie6 {
 
 
 	private void solve2() {
-		// TODO Auto-generated method stub
-		
+		int nonSym = 0;
+		int j;
+		for(int i = 0; i < data.length; i += 320) {
+			//System.out.println(i);
+			j = 0;
+			while(j < 160) {
+				if(data[i + j] != data[i + 319 - j] ) {
+					nonSym++;
+					break;
+				}
+				j++;
+			}
+		}
+		System.out.println("2) " + nonSym);
 	}
 
 
 	private void solve3() {
-		// TODO Auto-generated method stub
-		
+		int contrast = 0;
+		int k = 0;
+		for(int i = 0; i < data.length; i += 320) {
+			for(int j = 0; j < 320; j++) {
+				k = i + j;
+				//górny piksel
+				if(k > 320 && Math.abs(data[k - 320] - data[k]) > 128) {
+					contrast++;
+					continue;
+				}
+				//dolny piksel
+				if(k < 63680 && Math.abs(data[k+320] - data[k]) > 128) {
+					contrast++;
+					continue;
+				}
+				//lewy piksel
+				if(k % 320 != 0 && Math.abs(data[k - 1] - data[k]) > 128) {
+					contrast++;
+					continue;
+				}
+				//prawy piksel
+				if(k % 320 != 319 && Math.abs(data[k+1] - data[k]) > 128) {
+					contrast++;
+					continue;
+				}
+			}
+		}
+		System.out.println("3) " + contrast);
 	}
 
 
 	private void solve4() {
-		// TODO Auto-generated method stub
-		
+		int max = 0;
+		int kolor = 0;
+		int colMax = 0;
+		int nr = 0;
+		int k;
+		for(int i = 0; i < 320; i++) {
+			nr = 1;
+			kolor = -1;
+			for(int j = 0; j < data.length; j += 320) {
+				k = j + i;
+				if(kolor == data[k]) {
+					nr++;
+					if(k > 63679 && colMax < nr) colMax = nr; 
+				} else {
+					if(colMax < nr) colMax = nr;
+					nr = 1;
+					kolor = data[k];
+				}
+				
+				
+			}
+			if(max < colMax) max = colMax;
+		}
+		System.out.println("4) " + max);
 	}
 
 
