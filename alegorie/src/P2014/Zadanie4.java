@@ -26,11 +26,11 @@ System.out.println("A) Wielokrotności: ");
 				if(c.b % c.a == 0) n++;
 			}
 		}
-	 System.out.println("Jest wielokrotnością: " + n);
+	 System.out.println("Jest wielokrotnością " + n);
 	}
 
 	private void solveB() {
-		System.out.println("B) Gdzie NWD liczb jest 1: ");
+		System.out.println("B) Gdzie NWD liczb jest 1 ");
 		int n = 0;
 		for(Couple c : data) {
 			if(gdc(c.a, c.b) == 1) n++; 
@@ -40,7 +40,7 @@ System.out.println("A) Wielokrotności: ");
 	}
 
 	private void solveC() {
-		System.out.println("C) Równe sumy cyfr : ");
+		System.out.println("C) Równe sumy cyfr  ");
 		int n = 0;
 		for(Couple c : data) {
 			if(sumOfCipher(c.a) == sumOfCipher(c.b)) n++; 
