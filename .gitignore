@@ -9,6 +9,11 @@
 StarBoat/core/build
 StarBoat/desktop/build
 
+spring-boot-shopassistant/build
+spring-boot-shopassistant/target
+spring-boot-shopassistant/bin
+
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

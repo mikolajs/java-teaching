@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Asystent Zakupów</string>
+    <string name="action_settings">Ustawienia</string>
+
+    <string name="title_activity_listening">Dodawanie towaru</string>
+    <string name="shoping_list">Lista zakupów</string>
+    <string name="microphone_info">Kliknij mikrofon,\n żeby nagrać</string>
+    <string name="articleInsert">Wpisz artykuł</string>
+    <string name="speech_prompt">Powiedz coś</string>
+    <string name="speech_not_supported">Twoje urządzenie nie obsługuje rozpoznawania mowy</string>
+    <string name="add_item_btn">Dodaj</string>
+    <string name="return_to_list">Powrót do listy zakupów</string>
+</resources>
