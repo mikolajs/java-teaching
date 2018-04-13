@@ -1,70 +1,41 @@
 package pl.edu.osp;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+public class Main {
 
-class Main {
+    public static void main(String[] args) throws FileNotFoundException {
+        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+        long[] pesel = new long[150];
+        int a = 0;
+        int b = 0;
+        int suma = 0;
+        int kontrolna = 0;
+        File file = new File("/home/ms/Dropbox/school/LO/matury informatyka/2010/Dane_PR/pesel.txt");
+        Scanner sc = new Scanner(file);
+        for (int i = 0; i < 150; i++) {
+            pesel[i] = sc.nextLong();
+        }
+        for (long p : pesel) {
+            suma = 0;
+            String str = String.valueOf(p);
+            if (str.charAt(2) == '1' && str.charAt(3) == '2')
+                a++;
+            if ((int) (char) (int) str.charAt(9) % 2 == 0)
+                b++;
+            for (int k = 0; k < 10; k++) {
+                suma += (int) (char) (int) str.charAt(k) * wagi[k];
+            }
+            if (suma % 10 != 0)
+                kontrolna = 10 - (suma % 10);
+            if (str.charAt(10) != (char) kontrolna)
+                System.out.println(p);
+        }
+        System.out.println(a);
+        System.out.println(b);
+    }
 
-    public static void main(String[] args) {
-    	Main m = new Main();
-    	System.out.println();
-    	m.test();
-    	
-    	StringBuilder sb = new StringBuilder();
-    	
-    	try {
-			Scanner s1 = new Scanner(new File("tj.txt"));
-			Scanner s2 = new Scanner(new File("kucze1.txt"));
-			while (s1.hasNext()) {
-				sb.append(m.code(s1.next(), s2.next()) + "\n"); 
-				s2.close();
-				s1.close();
-			}
-
-		} catch (Exception e) {
-			System.out.println("Błąd " + e.toString());
-		}
-    	
-    	
-    	try {
-    		Files.write(Paths.get("wynikA.txt"), sb.toString().getBytes());
-    	} catch (IOException e) {
-    		System.out.println("Błąd" + e.toString());
-    	}
-    	
-    	
-    	
-    }
-    
-    public String code(String crypted, String key) {
-    	String decrypted = "";
-    	int k;
-		for(int i = 0; i < crypted.length(); i++) {
-			k = (int) crypted.charAt(i) + (int) key.charAt(i % key.length()) - 64;
-			if(k > 90) k -= 26;
-			decrypted += (char) k;
-		}	
-    	return decrypted;
-    }
-    
-    public String decode(String decrypted, String key) {
-    	String crypted = "";
-    	int k;
-    	for(int i = 0; i < decrypted.length(); i++) {
-			k = (int) decrypted.charAt(i) -((int) key.charAt(i % key.length()) - 64);
-			if(k < 65) k += 26;
-			crypted += (char) k;
-		}	
-    	return crypted;
-    }
-    
-    public void test() {
-    	assert code("LATO", "WODA").equals("IPXP");
-    	assert code("MARTA", "TOR").equals("GPJNP");
-    	assert decode("IPXP", "WODA").equals("LATO");
-    	assert decode("GPJNP", "TOR").equals("MARTA");
-    }
 }
+        
