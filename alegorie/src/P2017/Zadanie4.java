@@ -4,17 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Numbers {
-	int a;
-	int b;
-	int c;
-	public Numbers(int a, int b, int c) {
-		this.a = a;
-		this.b = b;
-		this.c = c;
-	}
-}
 
+
+/* zadanie 165 */
 public class Zadanie4 {
 	private int maxCifersSum = 0; 
 	private int numberMaxCifersSum = 0;
@@ -127,8 +119,19 @@ public class Zadanie4 {
 	    sb.append(String.format("2) suma NWD %d \n", solv2()));
 	    solv3();
 	    sb.append(String.format("3) linii z sumą cyfr 35 jest %d \n" +
-	    		"maksymalna suma cyfr to %d " + " i jest w linii nr %d"
+	    		"maksymalna suma cyfr to %d " + " i jest ich %d"
 	    		,numberOf35CifersSum, maxCifersSum, numberMaxCifersSum ));
 		return sb.toString();
+	}
+}
+
+class Numbers {
+	int a;
+	int b;
+	int c;
+	public Numbers(int a, int b, int c) {
+		this.a = a;
+		this.b = b;
+		this.c = c;
 	}
 }

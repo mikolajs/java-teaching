@@ -8,6 +8,7 @@ import java.nio.file.Paths;
  * Komórka umiera gdy nie ma dwóch lub trzech sąsiadów
  * Komórka ożywa gdy ma dokładnie 3 sąsiadów moze być po przekątnej
  * plansza jest nieskończona
+ * Zadanie 306
  */
 public class GameOfLife {
 	private char[][] map;

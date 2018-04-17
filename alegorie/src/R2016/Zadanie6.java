@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+/* zadanie 304 */
 public class Zadanie6 {
 	
 	

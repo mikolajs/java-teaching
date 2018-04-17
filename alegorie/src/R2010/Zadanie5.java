@@ -4,14 +4,30 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Vector;
+import java.util.Comparator;
 
+/* Pesele */
 public class Zadanie5 {
 	String[] pesels;
-	public Zadanie5(){
-		try {
-			pesels = (new String(Files.readAllBytes(Paths.get("pesel.txt")))).split("\n");
-		} catch (IOException e){
-			System.out.println("Problem z otwarciem pliku");
+	
+	public static void main(String[] args) {
+		Zadanie5 zad5 = new Zadanie5();
+		zad5.load();
+		System.out.println("Zadanie 5: PESELe");
+		System.out.println("A) Urodzeni w grudniu: " + zad5.a());
+		System.out.println("B) Pracuje kobiet: " + zad5.b());
+		System.out.println("C) Rok największej liczby urodzin: 19" + zad5.c());
+		System.out.println("D) Nieprawidłowe pesele:");
+		String[] s = zad5.d();
+		for(String str : s){
+			System.out.println(str);
+		}
+		System.out.println("E) Zestawienie urodzeń w dziesięcioleciach:");
+		int[] dec = zad5.e();
+		for(int i = 0; i < dec.length; i++){
+			if(dec[i] > 0) {
+				System.out.println(i+"0-te | " + dec[i]);
+			}
 		}
 	}
 	
@@ -74,8 +90,7 @@ public class Zadanie5 {
 				if(((int)p.charAt(10) - 48) != r) v.addElement(p.trim()); 
 			}
 		}
-		PeselComparator pc = new PeselComparator();
-		v.sort(pc);
+		v.sort(new PeselComparator());
 		return v.toArray(new String[0]);
 	}
 	
@@ -88,5 +103,24 @@ public class Zadanie5 {
 		}				
 		return a;
 	}
-
+	
+	private void load() {
+		try {
+			pesels = (new String(
+					Files.readAllBytes(
+							Paths.get("dane/R2010/pesel.txt"))))
+						.split("\n");
+		} catch (IOException e){
+			System.out.println("Problem z otwarciem pliku");
+		}
+	}
 }
+
+class PeselComparator implements Comparator<String> {
+	
+		@Override
+	    public int compare(String s1, String s2){
+	        return s1.compareTo(s2);
+	    }
+}
+

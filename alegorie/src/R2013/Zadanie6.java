@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/* zadanie 307 */
 public class Zadanie6 {
 	private String[] data;
 	private String min = "7777777";

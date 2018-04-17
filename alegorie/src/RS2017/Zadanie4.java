@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/* zadanie 305 */
 public class Zadanie4 {
 	
 	private String[] binary;

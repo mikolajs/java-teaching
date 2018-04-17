@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-/* PIKSELE */
+/* PIKSELE  zadanie 301*/
 public class Zadanie6 {
 	int[] data;
 	

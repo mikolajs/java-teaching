@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/* zadanie 53 */
 public class Zadanie5 {
 
 	public static void main(String[] args) {

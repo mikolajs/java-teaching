@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-/* zadanie 262 */
+/* zadanie 292 */
 public class Zadanie5 {
 	private boolean[] primeSieve;
 	private int[] primes;

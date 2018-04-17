@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+
+/* zadanie 46 */
 public class Zadanie4 {
 	String[] dane;
 	

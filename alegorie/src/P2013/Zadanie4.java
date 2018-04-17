@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-/* Napisy – zadanie na sprawdzian */
+/* Napisy – spr*/
 public class Zadanie4 {
     
     String[] data;

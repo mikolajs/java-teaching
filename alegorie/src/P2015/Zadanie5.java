@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/* spr */
 public class Zadanie5 {
     
     String[] slowa;

@@ -11,14 +11,12 @@ public class Zadanie4 {
 	int a = 0;
 	int b = 0;
 	
-	Zadanie4(){
-		try {
-		 List<String> l = Files.readAllLines(Paths.get("anagram.txt"));//.toArray(wordsLines);
-		 wordsLines = l.toArray(new String[0]);
-		 count();
-		} catch (IOException e) {
-			System.out.println("Problem z plikiem anagramy.txt");
-		}		
+	public static void main(String[] args) {
+		System.out.println("Zadanie 4: Anagramy");
+		Zadanie4 zad4 = new Zadanie4();
+		zad4.load();
+		System.out.println(String.format("A) linii z równymi długością napisami: %d", zad4.a()) );
+		System.out.println(String.format("B) linii z samymi anagramami: %d", zad4.b()) );
 	}
 	
 	public int a() { return a; }
@@ -85,4 +83,14 @@ public class Zadanie4 {
 		return true;
 	}
 
+	private void load() {
+		try {
+			 List<String> l = Files.readAllLines(
+					 Paths.get("dane/R2010/anagram.txt"));//.toArray(wordsLines);
+			 wordsLines = l.toArray(new String[0]);
+			 count();
+			} catch (IOException e) {
+				System.out.println("Problem z plikiem anagramy.txt");
+			}	
+	}
 }

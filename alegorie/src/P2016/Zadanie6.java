@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/* zadanie 297 */
 public class Zadanie6 {
 		private int[] data;
 		public static void main(String[] args) {

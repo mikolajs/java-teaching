@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/* zadanie 302 */
 public class Zadanie4 {
 	private MyPoint[] tab;
 	private int r2 = 40000;

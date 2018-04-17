@@ -1,4 +1,7 @@
 package R2013;
+
+
+/* zadanie 308 */
 public class Zadanie4 {
 	//1.12.2012 sobota 5
 	//28.02.2013 dzień 90-ty
