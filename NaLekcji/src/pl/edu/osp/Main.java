@@ -1,62 +1,42 @@
 package pl.edu.osp;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class Main {
+public class Main {
 
-
-
-    public String koduj(String alamakota) {
-        String zakodowany = "";
-        int k = 0;
-        int j;
-        for (int i = 0; i < alamakota.length(); i++) {
-            j = (int) alamakota.charAt(i);
-            k++;
-            if (k > 3)
-                k = 1;
-
-            if(j != 32)
-                j += k;
-            else
-                k--;
-            zakodowany += (char) j;
-           
+    public static void main(String[] args) throws FileNotFoundException {
+        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+        long[] pesel = new long[150];
+        int a = 0;
+        int b = 0;
+        int suma = 0;
+        int kontrolna = 0;
+        File file = new File("/home/ms/Dropbox/school/LO/matury informatyka/2010/Dane_PR/pesel.txt");
+        Scanner sc = new Scanner(file);
+        for (int i = 0; i < 150; i++) {
+            pesel[i] = sc.nextLong();
         }
-        return zakodowany;
-    }
-
-    public String odkoduj(String zakodowany) {
-        String odkodowany = "";
-        int k = 0;
-        int w;
-        for (int q = 0; q < zakodowany.length(); q++) {
-            w = (int) zakodowany.charAt(q);
-            k++;
-            if (k > 3)
-                k = 1;
-            if(w != 32)
-            w -= k;
-            else
-                k--;
-            odkodowany += (char) w;
+        for (long p : pesel) {
+            suma = 0;
+            String str = String.valueOf(p);
+            if (str.charAt(2) == '1' && str.charAt(3) == '2')
+                a++;
+            if ((int) (char) (int) str.charAt(9) % 2 == 0)
+                b++;
+            for (int k = 0; k < 10; k++) {
+                suma += (int) (char) (int) str.charAt(k) * wagi[k];
+            }
+            if (suma % 10 != 0)
+                kontrolna = 10 - (suma % 10);
+            if (str.charAt(10) != (char) kontrolna)
+                System.out.println(p);
         }
-        return odkodowany;
-    }
+        System.out.println(a);
+        System.out.println(b);
 
-    public static void main(String[] args) {
-        System.out.println("Podaj napis");
-        Scanner sc = new Scanner(System.in);
-        String alamakota = sc.nextLine().toUpperCase();
-        Main k = new Main();
-        String zakodowany = k.koduj(alamakota);
-        System.out.println(zakodowany);
-        String odkodowany = (k.odkoduj(zakodowany));
-        System.out.println(odkodowany);
-        sc.close();
     }
 
 }
+        
