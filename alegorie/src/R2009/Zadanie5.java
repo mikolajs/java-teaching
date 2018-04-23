@@ -19,7 +19,7 @@ public class Zadanie5 {
 		Scanner sc = null;
 		int counter = 0;
 		try {
-			sc = new Scanner(new File("dane/R2006/dane.txt"));
+			sc = new Scanner(new File("dane/R2009/dane.txt"));
 			while (sc.hasNextLine()) {
 				sc.nextLine();
 				counter++;
