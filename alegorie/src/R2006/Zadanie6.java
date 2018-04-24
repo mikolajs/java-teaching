@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /* Słowa zadanie 316 */
-public class Zadanie5 {
+public class Zadanie6 {
 	String[] data;
 	public static void main(String[] args) {
-		Zadanie5 zad = new Zadanie5();
-		System.out.println("Zadanie5 (316)");
+		Zadanie6 zad = new Zadanie6();
+		System.out.println("Zadanie6 (316)");
 		zad.load();
 		zad.solveA();
 		zad.solveB();
@@ -22,32 +22,49 @@ public class Zadanie5 {
 	private void solveA() {
 		Arrays.sort(data, Comparator.comparing(String::toString));
 		String last = "";
-		int n = 0;
+		int n = 1;
 		int many = 0;
 		int maxMany = 0;
+		int i = 0;
 		String maxString = "";
 		for(String s : data) {
-			//System.out.println(s);
+			i++;
 			if(last.equals(s)) n++;
 			else {
-				if(n > 0) {
-					n = 0;
+				if(n > 1) {
 					many++;
 					if(maxMany < n) {
 						maxMany = n;
-						maxString = s;
+						maxString = last;
 					}
 				}
+				n = 1;
 				last = s;
 			}
+			if(i == data.length && n > 1) {
+				many++;
+				if(maxMany < n) {
+					maxMany = n;
+					maxString = s;
+				}
+			}
 		}
+		
 		System.out.println("Ilość wielokrotnych: " + many);
+		System.out.println("Słowo o największej liczbie wystąpień: " + maxString);
+		System.out.println("Ilość wystąpień: " + maxMany);
 		
 	}
 
 	private void solveB() {
-		// TODO Auto-generated method stub
-		
+		char c;
+		int n = 0;
+		for(String s : data) {
+			c = s.charAt(s.length()-1);
+			//odwrotnie A to 10 ale kod ascii to 65
+			if((int)c % 2 == 1) n++;
+		}
+		System.out.println("Szesnastkowo, parzystych: " + n);
 	}
 
 	private void load() {
