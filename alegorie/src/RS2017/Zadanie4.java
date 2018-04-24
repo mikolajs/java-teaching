@@ -16,6 +16,11 @@ public class Zadanie4 {
 	private int maxBinary;
 	private int maxBinaryIndex;
 	
+public static void main(String[] args) {
+		Zadanie4 z = new Zadanie4();
+		System.out.println(z);
+	}
+	
 	Zadanie4(){
 		
 		File file = new File("dane/RS2017/binarne.txt");
