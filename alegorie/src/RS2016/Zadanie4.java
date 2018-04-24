@@ -8,6 +8,11 @@ public class Zadanie4 {
 	double poured = 0;
 	double water191 = 0;
 	double substantion191 = 0;
+	
+	public static void main(String[] args) {
+		Zadanie4 zad4 = new Zadanie4();
+		zad4.run();
+	}
 
 	public void run() {
 		System.out.println("Zadanie 4.\n Dane do wykresu (4.3):");
