@@ -39,14 +39,18 @@ public class Zadanie4 {
 
 
 	private void solve2() {
+	    System.out.println("2)");
 		String word = "";
-		int size = 0;
+		int max = 0;
 		int t;
 		for(String s : dane) {
 			t = different(s);
+			if(t > max) {
+			    max = t;
+			    word = s;
+			}
 		}
-		String[] chars = new String[26];
-		chars[]
+		System.out.println(word + " : " + max);
 	}
 
 	private int different(String str) {
@@ -62,11 +66,24 @@ public class Zadanie4 {
 
 
 	private void solve3() {
-		// TODO Auto-generated method stub
-		
+	    System.out.println("3)");
+		for(String s : dane) {
+		    if(maxDist(s) <= 10)
+		        System.out.println(s);
+		}
+	}  
+
+	private int maxDist(String s) {
+	    int max = 0;
+	    int min = 27;
+	    int t;
+	    for(char c : s.toCharArray()) {
+	       t = ((int) c) - 65;
+	       if(max < t) max = t;
+	       if(min > t) min = t;
+	    }
+	    return max - min;
 	}
-
-
 
 
 	private void loadFile(String plik) {
