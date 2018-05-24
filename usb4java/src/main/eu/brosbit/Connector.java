@@ -30,7 +30,6 @@ public class Connector {
         {
             throw new LibUsbException("Unable to initialize libusb", result);
         }
-        handle = new DeviceHandle();
     }
     
     public void printDevices() {
@@ -68,8 +67,6 @@ public class Connector {
             throw new LibUsbException(
                 "Unable to read device descriptor", result);
         }
-        result = LibUsb.open(device, handle);
-       
         
         System.out.format(
                 "Bus %03d, Device %03d: Vendor %04x, Product %04x%n --------------\n  Info %s \n", 
@@ -81,7 +78,7 @@ public class Connector {
         printInfoDevice(device);
     }
     
-    private void printHandleInfoDevice() {
+    public void printHandleInfoDevice() {
         if(handle != null) {
             String info = LibUsb.getStringDescriptor(handle, (byte) 200);
             System.out.format("Extra Info from handle %s \n", info);
@@ -119,14 +116,16 @@ public class Connector {
     
     
     public void handleDevice() {
+        handle = new DeviceHandle();
         int result = LibUsb.open(device, handle);      
-        if(result < 0 ) {
+        if(result != LibUsb.SUCCESS ) {
             System.out.println("Unable handle device");
         }
     }
     
     public void destroy() {
         // Deinitialize the libusb context
+        LibUsb.close(handle);
         LibUsb.exit(context);
     }
 }
