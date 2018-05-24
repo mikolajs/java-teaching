@@ -1,42 +1,99 @@
 package pl.edu.osp;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
+/*
+Parzystych napisów jest 504
+Napisów o tej samej liczbie zer i jedynek jest 110
+Napisów z samymi zerami: 32 i samymi zerami: 50
+Długość napisów: 
+2 : 43
+3 : 38
+4 : 37
+5 : 57
+6 : 53
+7 : 68
+8 : 78
+9 : 103
+10 : 83
+11 : 90
+12 : 86
+13 : 81
+14 : 68
+15 : 59
+16 : 56
 
-    public static void main(String[] args) throws FileNotFoundException {
-        int[] wagi = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
-        long[] pesel = new long[150];
-        int a = 0;
-        int b = 0;
-        int suma = 0;
-        int kontrolna = 0;
-        File file = new File("/home/ms/Dropbox/school/LO/matury informatyka/2010/Dane_PR/pesel.txt");
-        Scanner sc = new Scanner(file);
-        for (int i = 0; i < 150; i++) {
-            pesel[i] = sc.nextLong();
-        }
-        for (long p : pesel) {
-            suma = 0;
-            String str = String.valueOf(p);
-            if (str.charAt(2) == '1' && str.charAt(3) == '2')
-                a++;
-            if ((int) (char) (int) str.charAt(9) % 2 == 0)
-                b++;
-            for (int k = 0; k < 10; k++) {
-                suma += (int) (char) (int) str.charAt(k) * wagi[k];
-            }
-            if (suma % 10 != 0)
-                kontrolna = 10 - (suma % 10);
-            if (str.charAt(10) != (char) kontrolna)
-                System.out.println(p);
-        }
-        System.out.println(a);
-        System.out.println(b);
 
-    }
+"/home/administrator/Programy/java-teaching/alegorie/dane/P2013/napisy.txt"
+ */
+
+    public class Main {
+
+    	
+    	public static int check(String binar) {
+    		int zero = 0;
+    		int one = 0;
+    		for(int i=0;i<binar.length();i++) {
+    			if(binar.charAt(i) == 48)
+    				zero++;
+    			else
+    				one++;
+    		}
+    		if(zero == one)
+    			return 2;
+    		else if(zero == 0 && one > 0)
+    			return 1;
+    		else if(one == 0 && zero > 0)
+    			return 0;
+    		return -1;
+    			
+    	}
+    	
+    	@SuppressWarnings({ "resource" })
+    	public static void main (String[] args) throws IOException{
+    		BufferedReader br = null;
+    		FileReader fr = null;
+    		String read = "";
+    		int even = 0;
+    		int equal = 0;
+    		int ones = 0;
+    		int zeros = 0;
+    		int x;
+    		int[] tab = new int[15];
+    		fr = new FileReader("/home/administrator/Programy/java-teaching/alegorie/dane/P2013/napisy.txt");
+    		br = new BufferedReader(fr);
+    		for(int i=0;i<1000;i++) {
+    			read = br.readLine();
+    			x = check(read);
+    			if(x == 2)
+    				equal++;
+    			else if(x == 1)
+    				ones++;
+    			else if(x == 0)
+    				zeros++;
+    			for(int j=0;j<15;j++) {
+    				if(read.length() == j+2) {
+    					tab[j]++;
+    					break;
+    				}
+    			}
+    		}
+    		for(int i=0;i<15;i+=2)
+    			even += tab[i];
+    		System.out.println(even);
+    		System.out.println(equal);
+    		System.out.println(zeros + " " + ones);
+    		for(int i=0;i<15;i++) {
+    			System.out.print(tab[i]);
+    			if(i != 14)
+    				System.out.print(" ");
+    		}
+    	}
 
 }
         

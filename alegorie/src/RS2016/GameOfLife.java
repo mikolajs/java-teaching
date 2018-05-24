@@ -16,6 +16,41 @@ public class GameOfLife {
 	private int sizeY;
 	private boolean theSame = false;
 	
+	public static void main(String[] arg) {
+		System.out.println("Game of life");
+		GameOfLife game = new GameOfLife("dane/RS2016/gra.txt");
+		game.draw();
+		assert (game.getLifes() == 7);
+		assert (game.getCountNeighbor(5, 9) == 5);
+		assert (game.getCountNeighbor(5, 10) == 3);
+		assert (game.getCountNeighbor(6, 9) == 5);
+		assert (game.getCountNeighbor(7, 9) == 3);
+		assert (game.getCountNeighbor(8, 10) == 1);
+		assert (game.getCountNeighbor(10, 1) == 0);
+		
+		boolean notReady = true;
+		for (int i = 1; i < 101; i++) {
+
+			if (i == 2) {
+				System.out.println("Zadanie 5,2. W drugim żywych komórek: " + game.getLifes());
+				//game.draw();
+			}
+			if (i == 37) {
+				System.out
+						.println("Zadanie 5,1. W 2 rzędzie i 19 kolumnie sąsiadów:  " + game.getCountNeighbor(2, 19));
+				//game.draw();
+
+			}
+			if (notReady && game.getTheSame()){
+				notReady = false;
+				System.out.println("Zadanie 5,3. Pokolenie powtórzone:  " + i);
+				System.out.println("żywych komórek " + game.getLifes());
+			}
+			game.next();
+		}
+
+	}
+	
 	public GameOfLife(int size){
 		sizeX = size;
 		sizeY = size;

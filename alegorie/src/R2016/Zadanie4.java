@@ -12,11 +12,25 @@ public class Zadanie4 {
 	private int edgePoints = 0;
 	private MyPoint[] edgeCord;
 	
+	
+	public static void main(String[] args) {
+		Zadanie4 zad4 = new Zadanie4();
+//		zad4.printDataInLine(1);
+//		zad4.printDataInLine(10000);
+		zad4.printPointPlacesAll();
+		zad4.printEdgePoints();
+		zad4.printPI(100);
+		zad4.printPI(1000);
+		zad4.printPI(5000);
+		zad4.printPI(10000);
+		zad4.createCSVErrorFile();
+	}
+	
 	public Zadanie4() {
 		edgeCord = new MyPoint[100];
 		String str = "";
 		try {
-		  str = new String(Files.readAllBytes(Paths.get("./punkty.txt")));
+		  str = new String(Files.readAllBytes(Paths.get("dane/R2016/punkty.txt")));
 		} catch (IOException e){
 			e.printStackTrace();
 		}
@@ -94,4 +108,14 @@ public class Zadanie4 {
 	}
 	
 }
+
+class MyPoint {
+	public int x;
+	public int y;
+	public MyPoint(int X, int Y) {
+		x = X;
+		y = Y;
+	}
+}
+
 

@@ -8,15 +8,25 @@ import java.util.List;
 /* zadanie 304 */
 public class Zadanie6 {
 	
+	public static void main(String[] args) {
+	Zadanie6 zad6 = new Zadanie6();
+	System.out.println("Wyniki zadania 6 drukowane do pliku");
+	zad6.encryptStrings();
+	zad6.decryptStrings();
+	zad6.checkStrings();
+	}
+	
 	
 	public void encryptStrings(){
 		StringBuilder sb = new StringBuilder();
 		try {
-			List<String> sl = Files.readAllLines(Paths.get("./dane_6_1.txt"));
+			List<String> sl = Files.readAllLines(Paths.get("dane/R2016/dane_6_1.txt"));
 			for(String s: sl){
 				sb.append(code(s, 107) + "\n");
 			}
-			Files.write(Paths.get("./wyniki_6_1.txt"), sb.toString().getBytes());
+			//Files.write(Paths.get("./wyniki_6_1.txt"), sb.toString().getBytes());
+			System.out.println("ad1. wyniki_6_1.txt ");
+			System.out.println(sb.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -25,7 +35,7 @@ public class Zadanie6 {
 	public void decryptStrings(){
 		StringBuilder sb = new StringBuilder();
 		try {
-			List<String> sl = Files.readAllLines(Paths.get("./dane_6_2.txt"));
+			List<String> sl = Files.readAllLines(Paths.get("dane/R2016/dane_6_2.txt"));
 			String[] arr;
 			for(String s: sl){
 				//System.out.println(s);
@@ -36,7 +46,8 @@ public class Zadanie6 {
 				}
 				else sb.append(decode(arr[0].trim(), Integer.valueOf(arr[1]).intValue()) + "\n");
 			}
-			Files.write(Paths.get("./wyniki_6_2.txt"), sb.toString().getBytes());
+			System.out.println("ad2. wyniki_6_2.txt ");
+			System.out.println(sb.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +56,7 @@ public class Zadanie6 {
 	public void checkStrings(){
 		StringBuilder sb = new StringBuilder();
 		try {
-			List<String> sl = Files.readAllLines(Paths.get("./dane_6_3.txt"));
+			List<String> sl = Files.readAllLines(Paths.get("dane/R2016/dane_6_3.txt"));
 			String[] arr;
 			for(String s: sl){
 				//System.out.println(s);
@@ -53,7 +64,8 @@ public class Zadanie6 {
 				if(arr.length < 2) continue;
 				if(!checkCode(arr[0].trim(), arr[1].trim())) sb.append(arr[0].trim() + "\n");
 			}
-			Files.write(Paths.get("./wyniki_6_3.txt"), sb.toString().getBytes());
+			System.out.println("ad3. wyniki_6_3.txt ");
+			System.out.println(sb.toString());			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

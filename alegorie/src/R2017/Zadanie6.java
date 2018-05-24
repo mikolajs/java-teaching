@@ -21,7 +21,7 @@ public class Zadanie6 {
 		zad.solve4();
 		System.out.println("Powinno być: 198");
 		zad.loadFile();
-		System.out.println("DLA DANYCH TESTOWYCH");
+		System.out.println("DLA DANYCH ZADANIA");
 		zad.solve1();
 		zad.solve2();
 		zad.solve3();

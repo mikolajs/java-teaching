@@ -9,9 +9,18 @@ public class Zadanie6 {
 	private String min = "7777777";
 	private String max = "0";
 	
+	public static void main(String[] args) throws IOException {
+		Zadanie6 zad6 = new Zadanie6();
+		System.out.println("Zadanie 6" );
+		System.out.println("a) ilość liczb z taką samą pierwszą i ostatnią cyfrą w 8: " + zad6.a());
+		System.out.println("b) ilość liczb z taką samą pierwszą i ostatnią cyfrą w 10: " + zad6.b());
+		System.out.println("b) ilość liczb z nie mniejszymi kolejnymmi cyframi: " + zad6.c());
+		System.out.println(String.format("c) największa %s i najmniejsza %s taka liczba", zad6.getMax(), zad6.getMin()));
+	}
+	
 	public Zadanie6() {
 		try {
-		String d = new String(Files.readAllBytes(Paths.get("./dane.txt")));
+		String d = new String(Files.readAllBytes(Paths.get("dane/R2013/dane.txt")));
 		this.data = d.split("\n");
 		assert (data.length == 5000);
 		mkTrimmed();

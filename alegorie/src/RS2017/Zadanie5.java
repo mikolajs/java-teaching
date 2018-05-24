@@ -16,6 +16,11 @@ public class Zadanie5 {
 	private int eveningWood = 0;
 	private int addWood = 0;
 	final private int allDays;
+	
+	public static void main(String[] args) {
+		Zadanie5 z = new Zadanie5();
+		System.out.println(z);
+	}
 
 	public Zadanie5() {
 		startDate = LocalDate.of(2015, Month.SEPTEMBER, 15);
