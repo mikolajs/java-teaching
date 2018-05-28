@@ -14,7 +14,7 @@ char c = 'A';
 // the setup routine runs once when you press reset:
 void setup() {                
   // initialize the digital pin as an output.
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(led, OUTPUT);     
 }
 
@@ -22,16 +22,16 @@ void setup() {
 void loop() {
   
   if(Serial.available()) {
-    //c = Serial.read();
+    Serial.read();
     digitalWrite(led, HIGH); 
     //Serial.print(c);
   }
   else 
     digitalWrite(led, LOW);
-    */
+  
      
-    Serial.print(c++);
+    Serial.print("AAA");
+    Serial.write("BBB");
  
-    if(c > 'Z') c = 'A';
-  delay(20);
+  delay(1000);
 }

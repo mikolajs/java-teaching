@@ -1,8 +1,5 @@
 package eu.brosbit;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.IntBuffer;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,11 +10,6 @@ import javax.usb.UsbInterface;
 import javax.usb.UsbPipe;
 import javax.usb.UsbPlatformException;
 
-import org.usb4java.BufferUtils;
-import org.usb4java.Device;
-import org.usb4java.DeviceHandle;
-import org.usb4java.LibUsb;
-import org.usb4java.LibUsbException;
 
 public class Communicator {
 

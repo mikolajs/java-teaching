@@ -2,6 +2,7 @@ package RS2018;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -57,15 +58,23 @@ public class Zadanie6 {
 	    System.out.println("3) anagramy ");
 	    for(DWord w : data) {
 	        if(w.a.length() == w.b.length()) {
-	            if(anagram(w.a, w.b)) 
+	            if(anagram(w.a, w.b)) {
 	                w.print();
+	                n++;
+	            }
 	        }
 	    }
 	    System.out.println("ilość " +n );
 	}
 	
 	private boolean anagram(String s1, String s2) {
-	    return false;
+		int[] t1 = new int[26];
+		int[] t2 = new int[26];
+		for(char c : s1.toCharArray())
+			t1[(int)c - 65] += 1;
+		for(char c : s2.toCharArray())
+			t2[(int)c - 65] += 1;
+	    return Arrays.equals(t1, t2);
 	}
 	
 	
