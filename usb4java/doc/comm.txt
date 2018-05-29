@@ -1,0 +1,6 @@
+
+//sprawdź atrybuty
+udevadm info -a -p $(udevadm info -q path -n /dev/bus/usb/002/005)
+
+//interfejs serial
+ls -l /sys/bus/usb-serial/devices

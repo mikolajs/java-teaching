@@ -4,7 +4,21 @@ import jssc.SerialPort;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
-		SerialPort serialPort = new SerialPort("/dev/ttyUSB0");
+	    String dev = "/dev/ttyUSB";
+	    if(args.length > 0) {
+	        String[] arr = args[0].split("p");
+	        if(arr.length > 1)
+	            dev += arr[1];
+	        else {
+	            System.out.println("Użycie: java - jar plik.jar -p0 \n gdzie 0 numer portu");
+	            System.exit(0);
+	        }
+	    }
+	    else {
+            System.out.println("Użycie: java - jar plik.jar -p0 \n gdzie 0 numer portu");
+            System.exit(0);
+        }
+		SerialPort serialPort = new SerialPort(dev);
 		serialPort.openPort();// Open serial port
 		serialPort.setParams(115200, 8, 1, 0);// Set params.
 		serialPort.writeByte((byte)3);
