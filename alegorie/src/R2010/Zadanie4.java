@@ -6,6 +6,7 @@ import java.nio.file.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*zad 311 sprawdzian */
 public class Zadanie4 {
 	private String[] wordsLines;
 	int a = 0;
