@@ -28,71 +28,72 @@ Długość napisów:
 15 : 59
 16 : 56
 
-
-"/home/administrator/Programy/java-teaching/alegorie/dane/P2013/napisy.txt"
+"/home/administrator/Programy/java-teaching/alegorie/dane/R2010/anagram.txt"
+ /home/administrator/Programy/java-teaching/alegorie/dane/R2011/liczby.txt
+ 
  */
 
     public class Main {
 
-    	
-    	public static int check(String binar) {
-    		int zero = 0;
-    		int one = 0;
-    		for(int i=0;i<binar.length();i++) {
-    			if(binar.charAt(i) == 48)
-    				zero++;
-    			else
-    				one++;
+    	String[] dane;
+    	public static void main(String[] args) {
+    		 Main z = new Main();
+    		System.out.println("zadanko: ");
+    		z.load();
+    		z.A();
+    		z.B();
+    		z.C();
+    		
+    }
+    	private void A() {
+    		int przez2 = 0;
+    		for(String s : dane) {
+    			if(s.charAt(s.length()-1)=='0')
+    				przez2++;
     		}
-    		if(zero == one)
-    			return 2;
-    		else if(zero == 0 && one > 0)
-    			return 1;
-    		else if(one == 0 && zero > 0)
-    			return 0;
-    		return -1;
-    			
+    		System.out.println("A) podzielne przez 2: "+ przez2);
     	}
-    	
-    	@SuppressWarnings({ "resource" })
-    	public static void main (String[] args) throws IOException{
-    		BufferedReader br = null;
-    		FileReader fr = null;
-    		String read = "";
-    		int even = 0;
-    		int equal = 0;
-    		int ones = 0;
-    		int zeros = 0;
-    		int x;
-    		int[] tab = new int[15];
-    		fr = new FileReader("/home/administrator/Programy/java-teaching/alegorie/dane/P2013/napisy.txt");
-    		br = new BufferedReader(fr);
-    		for(int i=0;i<1000;i++) {
-    			read = br.readLine();
-    			x = check(read);
-    			if(x == 2)
-    				equal++;
-    			else if(x == 1)
-    				ones++;
-    			else if(x == 0)
-    				zeros++;
-    			for(int j=0;j<15;j++) {
-    				if(read.length() == j+2) {
-    					tab[j]++;
-    					break;
+    	private void B() {
+    		String max = dane[0];
+    		for(String s : dane) {
+    			if(s.length() >= max.length()) {
+    				max = s;
+    			}else if(s.length() == max.length()) {
+    				
+    				if(s.compareTo(max) > 0) {
+    					max = s;
     				}
     			}
+    			}
+    		System.out.println("B) liczba: " + max + " 62222");
+    	}
+    	private void C() {
+    		int z = 0;
+    		for(int t=0; t<1000;t++) {
+    			if(dane[t].length()==9) {
+    				z++;
+    			}
     		}
-    		for(int i=0;i<15;i+=2)
-    			even += tab[i];
-    		System.out.println(even);
-    		System.out.println(equal);
-    		System.out.println(zeros + " " + ones);
-    		for(int i=0;i<15;i++) {
-    			System.out.print(tab[i]);
-    			if(i != 14)
-    				System.out.print(" ");
+    		System.out.println("C) jest ich: " + z);
+    	}
+    	private void load() {
+    		dane = new String[1000];
+    		File f = new File("/home/administrator/Programy/java-teaching/alegorie/dane/R2011/liczby.txt");
+    		Scanner sc = null;
+    		try {
+    			int i = 0;
+    			sc = new Scanner(f);
+    			while(sc.hasNext()) {
+    				dane[i++] = sc.next();
+    			}
+    		}catch (IOException e) {
+    			System.out.println("Błąd: " + e);
+    			
+    		}finally {
+    			if(sc != null) sc.close();
+    			
     		}
+    		
     	}
 
 }
