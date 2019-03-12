@@ -34,7 +34,8 @@ public class Main {
 	    
 		try {
 		    com = new Communicator(port);
-		    com.testConnection();
+		    com.testSendFile();
+//		    com.testConnection();
 //		    com.sendStartSeq();
 		    
 		    

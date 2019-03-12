@@ -34,7 +34,7 @@ public class Communicator {
         serialPort = new SerialPort(device);
         serialPort.openPort();// Open serial port
         serialPort.setParams(SerialPort.BAUDRATE_115200, SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
-                SerialPort.PARITY_EVEN);
+                SerialPort.PARITY_NONE);
         input = new LinkedList<Byte>();
     }
 
@@ -44,7 +44,7 @@ public class Communicator {
     }
 
     public void sendStartSeq() {
-        write(new byte[] {5, 4, 5});
+        write(new byte[] {ETX, EOT, ENQ, ACK, CUT, TLF, ABT, RST, NAK, ANY});
         LOG.log(Level.INFO, String.valueOf(readByte()));
     }
 
@@ -87,10 +87,20 @@ public class Communicator {
         }
     }
     
+    public void testSendFile() {
+    	SendFile sf = new SendFile();
+    	write(sf.getFullSize());
+    	 try { Thread.sleep(50); } catch (InterruptedException e) {}
+    	 write(sf.sendFirstBunch());
+    	 try { Thread.sleep(50); } catch (InterruptedException e) {}
+    	 LOG.log(Level.INFO, String.valueOf(readByte()));
+    }
+    
     public  void testConnection() {
-        for(byte i = 0; i < 127; i++) {
-            writeByte(i);
-            try { Thread.sleep(5); } catch (InterruptedException e) {
+        byte[] sendData = new byte[] {ETX, EOT, ENQ, ACK, CUT, TLF, ABT, RST, NAK, ANY};
+        for(byte b : sendData) {
+            writeByte(b);
+            try { Thread.sleep(50); } catch (InterruptedException e) {
             }
         }
         try { Thread.sleep(4000); } catch (InterruptedException e) {}
