@@ -14,9 +14,10 @@ public class TankGame extends Game {
 	
 	@Override
 	public void create () {
+		batch = new SpriteBatch();
         screenManager = new ScreenManager(this);
         screenManager.setStartScreen();
-		batch = new SpriteBatch();
+
 	}
 
 	@Override
