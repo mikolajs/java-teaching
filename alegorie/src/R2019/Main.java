@@ -1,4 +1,4 @@
-package PR2019;
+package R2019;
 import java.util.Scanner;
 import java.io.File;
 

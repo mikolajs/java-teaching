@@ -1,4 +1,4 @@
-package PR2019;
+package R2019;
 import java.util.*;
 
 public class Zadanie {
@@ -10,10 +10,10 @@ public class Zadanie {
     private int odpA(int[] data) {
     	int ile = 0;
     	int pot3 = 1;
-    	for(int i = 0; i < data.length; i++) {
+    	for(int d : data) {
     		pot3 = 1;
-    		while(pot3 < Math.sqrt(100000)) {
-        		if(data[i] == pot3) {
+    		while(pot3 <= 100_000) {
+        		if(d == pot3) {
         			ile++;
         			break;
         		}
@@ -40,9 +40,28 @@ public class Zadanie {
     	return list;
     }
     
-    private WynikC odpC() {
+    private WynikC odpC(int[] data) {
     	WynikC wynik = new WynikC();
-    	
+    	int length, tmpNWD, nextTmpNWD;
+    	for(int i = 0; i < data.length - 1; i++) {
+    		length = 1;
+    		tmpNWD = nwd(data[i], data[i+ length]);
+    		
+    		while(tmpNWD != 1 && length + i < data.length) {
+    			nextTmpNWD = nwd(tmpNWD, data[i+ length]);
+    			if(nextTmpNWD != 1) {
+    				length++;
+    				tmpNWD = nextTmpNWD;
+    			} else {
+    				if(wynik.dlugosc <= length) {
+    					wynik.dlugosc = length;
+    					wynik.pierwsza = data[i];
+    					wynik.nwd = tmpNWD;
+    				}
+    				break;
+    			}
+    		}
+    	}
     	
     	return wynik;
     }
@@ -74,7 +93,7 @@ public class Zadanie {
     	System.out.println("Liczby równe sumie silni cyfr: ");
     	odpB(mData).stream().forEach(num -> System.out.println(num));
     	System.out.println("\n ODP C");
-    	WynikC wynikC = odpC();
+    	WynikC wynikC = odpC(mData);
     	System.out.format("Pierwsza liczba najdłużeszgo  ciągu %d, długość %d, nwd %d"
     			, wynikC.pierwsza, wynikC.dlugosc, wynikC.nwd);
     }
