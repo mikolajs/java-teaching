@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class Deck {
-    private char[] colors = {'♥', '♦', '♣', '♠'};
+    //public static final char[]  colors = {'♥', '♦', '♣', '♠'};
     //heart (kier), diamond (karo), club (trefl), spade (pik)
     private char[] figures = {'A', 'J', 'Q', 'K'};
     private Stack<Card> stack;
@@ -24,15 +24,15 @@ public class Deck {
     private Stack<Card> newDeck(){
         ArrayList<Card> cards = new ArrayList<Card>();
         for(int i = 2; i < 11; i++){
-            for(char c: colors){
-                cards.add(new Card(String.valueOf(i), c, i));
+            for(CardColor c: CardColor.values()){
+                cards.add(new Card(String.valueOf(i), c.name, i));
             }
         }
         for(char figure: figures){
-            for(char c: colors){
+            for(CardColor c: CardColor.values()){
                 if(figure != 'A')
-                    cards.add(new Card(String.valueOf(figure), c, 10) );
-                else cards.add(new Card(String.valueOf(figure), c, 11) );
+                    cards.add(new Card(String.valueOf(figure), c.name, 10) );
+                else cards.add(new Card(String.valueOf(figure), c.name, 11) );
             }
         }
         Collections.shuffle(cards);

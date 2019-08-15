@@ -1,6 +1,5 @@
 package pl.sflg;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScreenManager {
@@ -10,10 +9,11 @@ public class ScreenManager {
     public ScreenManager(MainGame game){
         this.game = game;
         batch = game.getBatch();
+
     }
 
     public void starGame(){
-        GameScreen gameScreen = new GameScreen(this);
+        GamePlayScreen gameScreen = new GamePlayScreen(this);
         game.setScreen(gameScreen);
     }
 

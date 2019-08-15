@@ -16,15 +16,10 @@ public class Card {
 
     public String figure() { return  number;}
     public String color() { return String.valueOf(color); }
-    public boolean isBlack() {
-        switch (color) {
-            case 'h':
-            case 'd':
-                return false;
 
-            default:
-                return true;
-        }
+    public boolean isBlack() {
+        if(color == CardColor.HEART.name || color == CardColor.DIAMOND.name) return false;
+        else return true;
     }
 
     public int getValue() {return value;}
